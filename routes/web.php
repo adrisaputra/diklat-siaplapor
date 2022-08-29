@@ -33,9 +33,7 @@ Route::get('/buat_storage', function () {
 //     return view('auth.login');
 // });
 
-Route::get('/', function () {
-    return view('auth.login');
-});
+Route::get('/', [LoginController::class, 'index']);
 
 Route::post('/login_w', [LoginController::class, 'authenticate']);
 Route::get('/dashboard', [HomeController::class, 'index']);

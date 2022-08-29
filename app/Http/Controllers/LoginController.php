@@ -9,6 +9,16 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
 {
+    public function index(){
+
+        if (Auth::user() == TRUE) {
+            return redirect('/dashboard');
+        } else {
+            return view('auth.login');
+        }
+
+    }
+
     public function authenticate(Request $request){
 
         $user = User::where('name', $request->name)->first();
