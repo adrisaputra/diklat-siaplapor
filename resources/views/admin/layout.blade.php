@@ -107,12 +107,28 @@
                 <li class=" nav-item {{ (request()->is('dashboard*')) ? 'active' : '' }}"><a href="{{ url('/dashboard') }}"><i class="ft-home"></i><span class="menu-title" data-i18n="">Dashboard</span></a></li>
 				@if(Auth::user()->group == 1)
                     <li class=" nav-item {{ (request()->is('agenda*')) ? 'active' : '' }}"><a href="{{ url('agenda') }}"><i class="ft-home"></i><span class="menu-title" data-i18n="">Agenda</span></a></li>
-                    <li class=" nav-item {{ (request()->is('proposal*')) ? 'active' : '' }}"><a href="{{ url('proposal') }}"><i class="ft-home"></i><span class="menu-title" data-i18n="">Usul OPD</span></a></li>
+                    <li class=" nav-item {{ (request()->is('proposal*')) ? 'active' : '' }}"><a href="#"><i class="ft-list"></i><span class="menu-title" data-i18n="">Usul OPD</span><span class="badge badge badge-info badge-pill float-right mr-2">3</span></a>
+                        <ul class="menu-content">
+                            <li  class="{{ (request()->is('proposal_income*')) ? 'active' : '' }}"><a class="menu-item" href="{{ url('proposal_income') }}">Masuk</a>
+                            </li>
+                            <li  class="{{ (request()->is('proposal_process*')) ? 'active' : '' }}"><a class="menu-item" href="{{ url('proposal_process') }}">Diproses</a>
+                            </li>
+                        </ul>
+                    </li>
                     <li class=" nav-item {{ (request()->is('office*')) ? 'active' : '' }}"><a href="{{ url('office') }}"><i class="la la-building"></i><span class="menu-title" data-i18n="">OPD</span></a></li>
                     <li class=" nav-item {{ (request()->is('user*')) ? 'active' : '' }}"><a href="{{ url('user') }}"><i class="ft-user"></i><span class="menu-title" data-i18n="">User</span></a></li>
                 @elseif(Auth::user()->group == 3)
                     <li class=" nav-item {{ (request()->is('proposal/create*')) ? 'active' : '' }}"><a href="{{ url('proposal/create') }}"><i class="ft-plus-square"></i><span class="menu-title" data-i18n="">Buat Pengusulan</span></a></li>
-                    <li class=" nav-item {{ (request()->is('proposal*')) ? 'active' : '' }}"><a href="{{ url('proposal') }}"><i class="ft-list"></i><span class="menu-title" data-i18n="">List Pengusulan</span></a></li>
+                    <li class=" nav-item {{ (request()->is('proposal*')) ? 'active' : '' }}"><a href="#"><i class="ft-list"></i><span class="menu-title" data-i18n="">List Pengusulan</span><span class="badge badge badge-info badge-pill float-right mr-2">3</span></a>
+                        <ul class="menu-content">
+                            <li class="{{ (request()->is('proposal_income*')) ? 'active' : '' }}"><a class="menu-item" href="{{ url('proposal_income') }}">Terkirim</a>
+                            </li>
+                            <li class="{{ (request()->is('proposal_revision*')) ? 'active' : '' }}"><a class="menu-item" href="{{ url('proposal_revision') }}">Tidak Lengkap</a>
+                            </li>
+                            <li class="{{ (request()->is('proposal_process*')) ? 'active' : '' }}"><a class="menu-item" href="{{ url('proposal_process') }}">Diproses</a>
+                            </li>
+                        </ul>
+                    </li>
                 @endif
 
             </ul>

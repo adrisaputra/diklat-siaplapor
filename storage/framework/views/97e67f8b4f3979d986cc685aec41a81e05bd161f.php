@@ -107,12 +107,28 @@
                 <li class=" nav-item <?php echo e((request()->is('dashboard*')) ? 'active' : ''); ?>"><a href="<?php echo e(url('/dashboard')); ?>"><i class="ft-home"></i><span class="menu-title" data-i18n="">Dashboard</span></a></li>
 				<?php if(Auth::user()->group == 1): ?>
                     <li class=" nav-item <?php echo e((request()->is('agenda*')) ? 'active' : ''); ?>"><a href="<?php echo e(url('agenda')); ?>"><i class="ft-home"></i><span class="menu-title" data-i18n="">Agenda</span></a></li>
-                    <li class=" nav-item <?php echo e((request()->is('proposal*')) ? 'active' : ''); ?>"><a href="<?php echo e(url('proposal')); ?>"><i class="ft-home"></i><span class="menu-title" data-i18n="">Usul OPD</span></a></li>
+                    <li class=" nav-item <?php echo e((request()->is('proposal*')) ? 'active' : ''); ?>"><a href="#"><i class="ft-list"></i><span class="menu-title" data-i18n="">Usul OPD</span><span class="badge badge badge-info badge-pill float-right mr-2">3</span></a>
+                        <ul class="menu-content">
+                            <li  class="<?php echo e((request()->is('proposal_income*')) ? 'active' : ''); ?>"><a class="menu-item" href="<?php echo e(url('proposal_income')); ?>">Masuk</a>
+                            </li>
+                            <li  class="<?php echo e((request()->is('proposal_process*')) ? 'active' : ''); ?>"><a class="menu-item" href="<?php echo e(url('proposal_process')); ?>">Diproses</a>
+                            </li>
+                        </ul>
+                    </li>
                     <li class=" nav-item <?php echo e((request()->is('office*')) ? 'active' : ''); ?>"><a href="<?php echo e(url('office')); ?>"><i class="la la-building"></i><span class="menu-title" data-i18n="">OPD</span></a></li>
                     <li class=" nav-item <?php echo e((request()->is('user*')) ? 'active' : ''); ?>"><a href="<?php echo e(url('user')); ?>"><i class="ft-user"></i><span class="menu-title" data-i18n="">User</span></a></li>
                 <?php elseif(Auth::user()->group == 3): ?>
                     <li class=" nav-item <?php echo e((request()->is('proposal/create*')) ? 'active' : ''); ?>"><a href="<?php echo e(url('proposal/create')); ?>"><i class="ft-plus-square"></i><span class="menu-title" data-i18n="">Buat Pengusulan</span></a></li>
-                    <li class=" nav-item <?php echo e((request()->is('proposal*')) ? 'active' : ''); ?>"><a href="<?php echo e(url('proposal')); ?>"><i class="ft-list"></i><span class="menu-title" data-i18n="">List Pengusulan</span></a></li>
+                    <li class=" nav-item <?php echo e((request()->is('proposal*')) ? 'active' : ''); ?>"><a href="#"><i class="ft-list"></i><span class="menu-title" data-i18n="">List Pengusulan</span><span class="badge badge badge-info badge-pill float-right mr-2">3</span></a>
+                        <ul class="menu-content">
+                            <li class="<?php echo e((request()->is('proposal_income*')) ? 'active' : ''); ?>"><a class="menu-item" href="<?php echo e(url('proposal_income')); ?>">Terkirim</a>
+                            </li>
+                            <li class="<?php echo e((request()->is('proposal_revision*')) ? 'active' : ''); ?>"><a class="menu-item" href="<?php echo e(url('proposal_revision')); ?>">Tidak Lengkap</a>
+                            </li>
+                            <li class="<?php echo e((request()->is('proposal_process*')) ? 'active' : ''); ?>"><a class="menu-item" href="<?php echo e(url('proposal_process')); ?>">Diproses</a>
+                            </li>
+                        </ul>
+                    </li>
                 <?php endif; ?>
 
             </ul>

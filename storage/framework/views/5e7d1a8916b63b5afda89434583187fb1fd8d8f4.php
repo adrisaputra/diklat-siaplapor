@@ -28,10 +28,10 @@
                         <div class="card">
                             <div class="card-content collapse show">
                                 <div class="card-body">
-						  	<form action="<?php echo e(url('/proposal/search')); ?>" method="GET">
+						  	<form action="<?php echo e(url('/'.Request::segment(1).'/search')); ?>" method="GET">
 							<div class="row">
 								<div class="col-md-9">
-									<a href="<?php echo e(url('/proposal')); ?>" class="btn btn-warning btn-flat" title="Refresh halaman">Refresh</a>
+									<a href="<?php echo e(url('/'.Request::segment(1))); ?>" class="btn btn-warning btn-flat" title="Refresh halaman">Refresh</a>
 								</div>
 								<div class="col-md-3">
 									<div class="input-group">
@@ -76,78 +76,41 @@
                                             <?php if(Auth::user()->group == 1): ?>
 											    <td><?php echo e($v->office->name); ?></td>
                                             <?php endif; ?>
-											<td><?php echo e($v->status); ?></td>
 											<td>
-												<a href="#" class="btn btn-sm btn-flat btn-info" data-toggle="modal" data-target="#default">Detail</a>
-                                                <?php if(Auth::user()->group == 3): ?>
-												    <a href="<?php echo e(url('proposal/edit/'.$v->id )); ?>" class="btn btn-sm btn-flat btn-warning">Edit</a>
+                                                <?php if(Auth::user()->group == 1): ?>
+                                                    <?php echo e($v->status); ?>
+
+                                                <?php elseif(Auth::user()->group == 3): ?>
+                                                    <?php if($v->status=="Masuk"): ?>
+                                                        Terkirim
+                                                    <?php else: ?>
+                                                        <?php echo e($v->status); ?>
+
+                                                    <?php endif; ?>
+                                                <?php endif; ?>    
+                                            </td>
+											<td>
+                                                <?php if(Auth::user()->group == 1): ?>
+                                                    <?php if($v->status=="Masuk"): ?>
+												        <a href="<?php echo e(url(Request::segment(1).'/control_sheet/'.$v->id )); ?>" class="btn btn-sm btn-flat btn-success">Verifikasi</a>
+                                                    <?php elseif($v->status=="Proses"): ?>
+												        <a href="<?php echo e(url(Request::segment(1).'/control_sheet/'.$v->id )); ?>" class="btn btn-sm btn-flat btn-primary btn-block">Cetak Disposisi</a>
+												        <a href="<?php echo e(url(Request::segment(1).'/control_sheet/'.$v->id )); ?>" class="btn btn-sm btn-flat btn-success btn-block">Proses Disposisi</a>
+                                                    <?php endif; ?>
+                                                <?php elseif(Auth::user()->group == 3): ?>
+                                                    <?php if($v->status=="Perbaiki"): ?>
+												        <a href="<?php echo e(url(Request::segment(1).'/edit/'.$v->id )); ?>" class="btn btn-sm btn-flat btn-warning">Perbaiki</a>
+                                                    <?php else: ?>
+                                                        <a href="<?php echo e(url(Request::segment(1).'/detail/'.$v->id )); ?>" class="btn btn-sm btn-flat btn-info">Detail</a>
+                                                    <?php endif; ?>
                                                 <?php endif; ?>
 											</td>
 										</tr>
                                         
-                                        <!-- Modal -->
-                                        <div class="modal fade text-left" id="default" tabindex="-1" role="dialog" aria-labelledby="basicModalLabel1" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h4 class="modal-title" id="basicModalLabel1">Detail</h4>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                            
-                                                        <div class="form-group row">
-                                                            <label class="col-form-label col-sm-4 text-sm-right"> Tanggal Usul</label>
-                                                            <label class="col-form-label col-sm-8"> : <?php echo e(date('d-m-Y', strtotime($v->date))); ?></label>
-                                                        </div>
-    
-                                                        <div class="form-group row">
-                                                            <label class="col-form-label col-sm-4 text-sm-right"> Jenis Usul</label>
-                                                            <label class="col-form-label col-sm-8"> : <?php echo e($v->type); ?></label>
-                                                        </div>
-
-                                                        <div class="form-group row">
-                                                            <label class="col-form-label col-sm-4 text-sm-right"> Tentang</label>
-                                                            <label class="col-form-label col-sm-8"> : <?php echo e($v->about); ?></label>
-                                                        </div>
-
-                                                        <div class="form-group row">
-                                                            <label class="col-form-label col-sm-4 text-sm-right"> Surat Pengantar</label>
-                                                            <label class="col-form-label col-sm-8"> : <a href="<?php echo e(asset('upload/cover_letter/'.$v->cover_letter )); ?>" target="blank" class="btn btn-sm btn-flat btn-info">Lihat File</a></label>
-                                                        </div>
-
-                                                        <div class="form-group row">
-                                                            <label class="col-form-label col-sm-4 text-sm-right"> Telaah Staf</label>
-                                                            <label class="col-form-label col-sm-8"> : <a href="<?php echo e(asset('upload/review_staff/'.$v->review_staff )); ?>" target="blank" class="btn btn-sm btn-flat btn-info">Lihat File</a></label>
-                                                        </div>
-
-                                                        <div class="form-group row">
-                                                            <label class="col-form-label col-sm-4 text-sm-right"> Nota Dinas</label>
-                                                            <label class="col-form-label col-sm-8"> : <a href="<?php echo e(asset('upload/official_memo/'.$v->official_memo )); ?>" target="blank" class="btn btn-sm btn-flat btn-info">Lihat File</a></label>
-                                                        </div>
-
-                                                        <div class="form-group row">
-                                                            <label class="col-form-label col-sm-4 text-sm-right"> Konsep Persetujuan Naskah Dinas</label>
-                                                            <label class="col-form-label col-sm-8"> : <a href="<?php echo e(asset('upload/approval_concept/'.$v->approval_concept )); ?>" target="blank" class="btn btn-sm btn-flat btn-info">Lihat File</a></label>
-                                                        </div>
-
-                                                        <div class="form-group row">
-                                                            <label class="col-form-label col-sm-4 text-sm-right"> Draf SK/Pergub/Perda</label>
-                                                            <label class="col-form-label col-sm-8"> : <a href="<?php echo e(asset('upload/draft/'.$v->draft )); ?>" target="blank" class="btn btn-sm btn-flat btn-info">Lihat File</a></label>
-                                                        </div>
-
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn grey btn-secondary" data-dismiss="modal">Close</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
 										<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                             </tbody>
                                         </table>
-								<div align="right"><?php echo e($proposal->appends(Request::only('search'))->links()); ?></div>
+								        <div align="right"><?php echo e($proposal->appends(Request::only('search'))->links()); ?></div>
                                     </div>
                                 </div>
                             </div>

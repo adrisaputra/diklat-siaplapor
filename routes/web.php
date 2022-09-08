@@ -50,15 +50,25 @@ Route::post('/agenda/import_excel', [AgendaController::class, 'import_excel']);
 Route::get('/agenda/download_cv/{agenda}',[AgendaController::class, 'download_cv']);
 
 ## Usulan
-Route::get('/proposal', [ProposalController::class, 'index']);
-Route::get('/proposal/search', [ProposalController::class, 'search']);
+Route::get('/proposal_income', [ProposalController::class, 'index']);
+Route::get('/proposal_income/search', [ProposalController::class, 'search']);
+Route::get('/proposal_income/control_sheet/{proposal}', [ProposalController::class, 'control_sheet']);
+Route::put('/proposal_income/verification/{proposal}', [ProposalController::class, 'verification']);
+Route::get('/proposal_income/detail/{proposal}', [ProposalController::class, 'detail']);
+
+Route::get('/proposal_revision', [ProposalController::class, 'index']);
+Route::get('/proposal_revision/search', [ProposalController::class, 'search']);
+Route::get('/proposal_revision/edit/{proposal}', [ProposalController::class, 'edit']);
+Route::put('/proposal_revision/edit/{proposal}', [ProposalController::class, 'update']);
+Route::get('/proposal_revision/detail/{proposal}', [ProposalController::class, 'detail']);
+
+Route::get('/proposal_process', [ProposalController::class, 'index']);
+Route::get('/proposal_process/search', [ProposalController::class, 'search']);
+Route::get('/proposal_process/detail/{proposal}', [ProposalController::class, 'detail']);
+
 Route::get('/proposal/create', [ProposalController::class, 'create']);
 Route::post('/proposal', [ProposalController::class, 'store']);
-Route::get('/proposal/edit/{proposal}', [ProposalController::class, 'edit']);
-Route::put('/proposal/edit/{proposal}', [ProposalController::class, 'update']);
 Route::get('/proposal/hapus/{proposal}',[ProposalController::class, 'delete']);
-Route::post('/proposal/import_excel', [ProposalController::class, 'import_excel']);
-Route::get('/proposal/download_cv/{proposal}',[ProposalController::class, 'download_cv']);
 
 ## OPD
 Route::get('/office', [OfficeController::class, 'index']);
@@ -68,8 +78,6 @@ Route::post('/office', [OfficeController::class, 'store']);
 Route::get('/office/edit/{office}', [OfficeController::class, 'edit']);
 Route::put('/office/edit/{office}', [OfficeController::class, 'update']);
 Route::get('/office/hapus/{office}',[OfficeController::class, 'delete']);
-Route::post('/office/import_excel', [OfficeController::class, 'import_excel']);
-Route::get('/office/download_cv/{office}',[OfficeController::class, 'download_cv']);
 
 ## User
 Route::get('/user', [UserController::class, 'index']);

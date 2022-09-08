@@ -28,10 +28,10 @@
                         <div class="card">
                             <div class="card-content collapse show">
                                 <div class="card-body">
-						  	<form action="{{ url('/proposal/search') }}" method="GET">
+						  	<form action="{{ url('/'.Request::segment(1).'/search') }}" method="GET">
 							<div class="row">
 								<div class="col-md-9">
-									<a href="{{ url('/proposal') }}" class="btn btn-warning btn-flat" title="Refresh halaman">Refresh</a>
+									<a href="{{ url('/'.Request::segment(1)) }}" class="btn btn-warning btn-flat" title="Refresh halaman">Refresh</a>
 								</div>
 								<div class="col-md-3">
 									<div class="input-group">
@@ -75,78 +75,39 @@
                                             @if(Auth::user()->group == 1)
 											    <td>{{ $v->office->name }}</td>
                                             @endif
-											<td>{{ $v->status }}</td>
 											<td>
-												<a href="#" class="btn btn-sm btn-flat btn-info" data-toggle="modal" data-target="#default">Detail</a>
-                                                @if(Auth::user()->group == 3)
-												    <a href="{{ url('proposal/edit/'.$v->id ) }}" class="btn btn-sm btn-flat btn-warning">Edit</a>
+                                                @if(Auth::user()->group == 1)
+                                                    {{ $v->status }}
+                                                @elseif(Auth::user()->group == 3)
+                                                    @if($v->status=="Masuk")
+                                                        Terkirim
+                                                    @else
+                                                        {{ $v->status }}
+                                                    @endif
+                                                @endif    
+                                            </td>
+											<td>
+                                                @if(Auth::user()->group == 1)
+                                                    @if($v->status=="Masuk")
+												        <a href="{{ url(Request::segment(1).'/control_sheet/'.$v->id ) }}" class="btn btn-sm btn-flat btn-success">Verifikasi</a>
+                                                    @elseif($v->status=="Proses")
+												        <a href="{{ url(Request::segment(1).'/control_sheet/'.$v->id ) }}" class="btn btn-sm btn-flat btn-primary btn-block">Cetak Disposisi</a>
+												        <a href="{{ url(Request::segment(1).'/control_sheet/'.$v->id ) }}" class="btn btn-sm btn-flat btn-success btn-block">Proses Disposisi</a>
+                                                    @endif
+                                                @elseif(Auth::user()->group == 3)
+                                                    @if($v->status=="Perbaiki")
+												        <a href="{{ url(Request::segment(1).'/edit/'.$v->id ) }}" class="btn btn-sm btn-flat btn-warning">Perbaiki</a>
+                                                    @else
+                                                        <a href="{{ url(Request::segment(1).'/detail/'.$v->id ) }}" class="btn btn-sm btn-flat btn-info">Detail</a>
+                                                    @endif
                                                 @endif
 											</td>
 										</tr>
                                         
-                                        <!-- Modal -->
-                                        <div class="modal fade text-left" id="default" tabindex="-1" role="dialog" aria-labelledby="basicModalLabel1" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h4 class="modal-title" id="basicModalLabel1">Detail</h4>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                            
-                                                        <div class="form-group row">
-                                                            <label class="col-form-label col-sm-4 text-sm-right"> Tanggal Usul</label>
-                                                            <label class="col-form-label col-sm-8"> : {{ date('d-m-Y', strtotime($v->date)) }}</label>
-                                                        </div>
-    
-                                                        <div class="form-group row">
-                                                            <label class="col-form-label col-sm-4 text-sm-right"> Jenis Usul</label>
-                                                            <label class="col-form-label col-sm-8"> : {{ $v->type }}</label>
-                                                        </div>
-
-                                                        <div class="form-group row">
-                                                            <label class="col-form-label col-sm-4 text-sm-right"> Tentang</label>
-                                                            <label class="col-form-label col-sm-8"> : {{ $v->about }}</label>
-                                                        </div>
-
-                                                        <div class="form-group row">
-                                                            <label class="col-form-label col-sm-4 text-sm-right"> Surat Pengantar</label>
-                                                            <label class="col-form-label col-sm-8"> : <a href="{{ asset('upload/cover_letter/'.$v->cover_letter ) }}" target="blank" class="btn btn-sm btn-flat btn-info">Lihat File</a></label>
-                                                        </div>
-
-                                                        <div class="form-group row">
-                                                            <label class="col-form-label col-sm-4 text-sm-right"> Telaah Staf</label>
-                                                            <label class="col-form-label col-sm-8"> : <a href="{{ asset('upload/review_staff/'.$v->review_staff ) }}" target="blank" class="btn btn-sm btn-flat btn-info">Lihat File</a></label>
-                                                        </div>
-
-                                                        <div class="form-group row">
-                                                            <label class="col-form-label col-sm-4 text-sm-right"> Nota Dinas</label>
-                                                            <label class="col-form-label col-sm-8"> : <a href="{{ asset('upload/official_memo/'.$v->official_memo ) }}" target="blank" class="btn btn-sm btn-flat btn-info">Lihat File</a></label>
-                                                        </div>
-
-                                                        <div class="form-group row">
-                                                            <label class="col-form-label col-sm-4 text-sm-right"> Konsep Persetujuan Naskah Dinas</label>
-                                                            <label class="col-form-label col-sm-8"> : <a href="{{ asset('upload/approval_concept/'.$v->approval_concept ) }}" target="blank" class="btn btn-sm btn-flat btn-info">Lihat File</a></label>
-                                                        </div>
-
-                                                        <div class="form-group row">
-                                                            <label class="col-form-label col-sm-4 text-sm-right"> Draf SK/Pergub/Perda</label>
-                                                            <label class="col-form-label col-sm-8"> : <a href="{{ asset('upload/draft/'.$v->draft ) }}" target="blank" class="btn btn-sm btn-flat btn-info">Lihat File</a></label>
-                                                        </div>
-
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn grey btn-secondary" data-dismiss="modal">Close</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
 										@endforeach
                                             </tbody>
                                         </table>
-								<div align="right">{{ $proposal->appends(Request::only('search'))->links() }}</div>
+								        <div align="right">{{ $proposal->appends(Request::only('search'))->links() }}</div>
                                     </div>
                                 </div>
                             </div>
