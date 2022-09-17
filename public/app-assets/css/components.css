@@ -717,12 +717,12 @@ footer.footer-dark {
 .navigation {
   font-size: 1rem;
   letter-spacing: 0.2px;
-  font-family: "Comfortaa", cursive, "Times New Roman", Times, serif;
+  font-family: "Quicksand";
   font-weight: 700;
   overflow-y: hidden;
   padding-bottom: 20px; }
   .navigation .navigation-header {
-    font-family: "Comfortaa", cursive, "Times New Roman", Times, serif;
+    font-family: "Quicksand";
     font-weight: 400;
     line-height: 1.2;
     padding: 12px 22px;

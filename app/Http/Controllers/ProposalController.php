@@ -26,7 +26,7 @@ class ProposalController extends Controller
     {
         $title = "Usulan";
 
-        if(Auth::user()->group == 1){
+        if(Auth::user()->group == 1 || Auth::user()->group == 2){
             if($request->segment(1)=="proposal_income"){
                 $proposal = Proposal::where('status','Masuk')->orderBy('id','DESC')->paginate(25)->onEachSide(1);
             } else if($request->segment(1)=="proposal_process"){
@@ -55,7 +55,7 @@ class ProposalController extends Controller
         $title = "Usulan";
         $proposal = $request->get('search');
 
-        if(Auth::user()->group == 1){
+        if(Auth::user()->group == 1 || Auth::user()->group == 2){
             if($request->segment(1)=="proposal_income"){
                 $proposal = Proposal::where('status','Masuk')
                                 ->where(function ($query) use ($proposal) {

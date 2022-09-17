@@ -26,7 +26,7 @@ class HarmonizationController extends Controller
     {
         $title = "Usulan";
 
-        if(Auth::user()->group == 1){
+        if(Auth::user()->group == 1 || Auth::user()->group == 2){
             if($request->segment(1)=="harmonizations"){
                 $proposal = Proposal::join('harmonizations', 'proposals.id', '=', 'harmonizations.id')
                             ->where(function ($query) {
@@ -95,7 +95,7 @@ class HarmonizationController extends Controller
         $title = "Usulan";
         $harmonization = $request->get('search');
 
-        if(Auth::user()->group == 1){
+        if(Auth::user()->group == 1 || Auth::user()->group == 2){
             if($request->segment(1)=="harmonizations"){
                 $proposal = Proposal::join('harmonizations', 'proposals.id', '=', 'harmonizations.id')
                             ->where(function ($query) {

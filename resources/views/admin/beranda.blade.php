@@ -6,9 +6,16 @@
         <div class="content-wrapper">
             <div class="content-wrapper-before"></div>
             <div class="content-header row">
+
+                
             </div>
             <div class="content-body">
                 <!-- Revenue, Hit Rate & Deals -->
+                <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                     <p class="animate fadeUp " style="font-size:28px;font-weight:bold;color:white;margin-top: -20px;margin-bottom: 10px;">Selamat Datang di Siprokumda (Sistem Infromasi Produk Hukum Daerah) </p>
+                    </div>
+                </div>
                 <div class="row">
                 @if(Auth::user()->group == 1 || Auth::user()->group == 2)
                     <div class="col-lg-3 col-md-12">

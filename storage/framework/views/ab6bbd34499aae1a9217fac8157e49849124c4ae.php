@@ -59,7 +59,7 @@
                                                     <th>Tanggal Usul</th>
                                                     <th>Jenis Usul</th>
                                                     <th>Tentang</th>
-                                                    <?php if(Auth::user()->group == 1): ?>
+                                                    <?php if(Auth::user()->group == 1 || Auth::user()->group == 2): ?>
                                                         <td>OPD</td>
                                                         <?php if(Request::segment(1)=="harmonization_done"): ?> 
                                                         <?php elseif(Request::segment(1)=="harmonization_get_document"): ?> 
@@ -87,7 +87,7 @@
 											<td><?php echo e(date('d-m-Y', strtotime($v->date))); ?></td>
 											<td><?php echo e($v->type); ?></td>
 											<td><?php echo e($v->about); ?></td>
-                                            <?php if(Auth::user()->group == 1): ?>
+                                            <?php if(Auth::user()->group == 1 || Auth::user()->group == 2): ?>
 											    <td><?php echo e($v->office->name); ?></td>
                                             <?php elseif(Auth::user()->group == 3): ?>
                                                 <?php if($v->status == "kirim ke opd"): ?>

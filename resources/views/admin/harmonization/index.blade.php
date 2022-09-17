@@ -58,7 +58,7 @@
                                                     <th>Tanggal Usul</th>
                                                     <th>Jenis Usul</th>
                                                     <th>Tentang</th>
-                                                    @if(Auth::user()->group == 1)
+                                                    @if(Auth::user()->group == 1 || Auth::user()->group == 2)
                                                         <td>OPD</td>
                                                         @if(Request::segment(1)=="harmonization_done") 
                                                         @elseif(Request::segment(1)=="harmonization_get_document") 
@@ -86,7 +86,7 @@
 											<td>{{ date('d-m-Y', strtotime($v->date)) }}</td>
 											<td>{{ $v->type }}</td>
 											<td>{{ $v->about }}</td>
-                                            @if(Auth::user()->group == 1)
+                                            @if(Auth::user()->group == 1 || Auth::user()->group == 2)
 											    <td>{{ $v->office->name }}</td>
                                             @elseif(Auth::user()->group == 3)
                                                 @if($v->status == "kirim ke opd")

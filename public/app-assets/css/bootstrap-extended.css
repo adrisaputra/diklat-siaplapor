@@ -881,7 +881,7 @@ select.form-control {
 .header-navbar {
   padding: 0px;
   min-height: 5rem;
-  font-family: "Comfortaa", cursive, "Times New Roman", Times, serif;
+  font-family: "Quicksand";
   -webkit-transition: 300ms ease all;
   -o-transition: 300ms ease all;
   -moz-transition: 300ms ease all;
@@ -1588,7 +1588,7 @@ select.form-control {
 
 .breadcrumb {
   font-size: 1rem;
-  font-family: "Comfortaa", cursive, "Times New Roman", Times, serif;
+  font-family: "Quicksand";
   background-color: transparent;
   padding: 0 0 0.75rem 0rem; }
   .breadcrumb > li + li::before {

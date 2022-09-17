@@ -11,8 +11,9 @@
     <meta name="author" content="ThemeSelect">
     <title>Siap Lapor</title>
     <link rel="apple-touch-icon" href="<?php echo e(asset('/upload/logo/sultra.png')); ?>">
-    <link rel="shortcut icon" type="image/x-icon" href="<?php echo e(asset('/upload/logo/sultra.png')); ?>">
-    <link href="https://fonts.googleapis.com/css?family=Muli:300,300i,400,400i,600,600i,700,700i%7CComfortaa:300,400,700" rel="stylesheet">
+    <link rel="shortcut icon" type="image/x-icon" href="<?php echo e(asset('/upload/logo/sultra.png')); ?>"><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
 
     <!-- BEGIN: Vendor CSS-->
     <link rel="stylesheet" type="text/css" href="<?php echo e(asset('app-assets/vendors/css/vendors.min.css')); ?>">
@@ -94,7 +95,7 @@
         <div class="navbar-header">
             <ul class="nav navbar-nav flex-row position-relative">
                 <li class="nav-item mr-auto"><a class="navbar-brand" href="index.html">
-                    <center><img class="brand-logo" alt="Chameleon admin logo" src="<?php echo e(asset('/upload/logo/logo.png')); ?>" style="width: 144px;margin-top: -5px;"/></center>
+                    <center><img class="brand-logo" alt="Chameleon admin logo" src="<?php echo e(asset('/upload/logo/logo.png')); ?>" style="width: 200px;margin-top: -5px;"/></center>
                     </a></li>
                 <li class="nav-item d-none d-md-block nav-toggle"><a class="nav-link modern-nav-toggle pr-0" data-toggle="collapse"><i class="toggle-icon ft-disc font-medium-3" data-ticon="ft-disc"></i></a></li>
                 <li class="nav-item d-md-none"><a class="nav-link close-navbar"><i class="ft-x"></i></a></li>
@@ -105,7 +106,7 @@
             <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
                 
                 <li class=" nav-item <?php echo e((request()->is('dashboard*')) ? 'active' : ''); ?>"><a href="<?php echo e(url('/dashboard')); ?>"><i class="ft-home"></i><span class="menu-title" data-i18n="">Dashboard</span></a></li>
-				<?php if(Auth::user()->group == 1): ?>
+				<?php if(Auth::user()->group == 1 || Auth::user()->group == 2): ?>
                     <li class=" nav-item <?php echo e((request()->is('agenda*')) ? 'active' : ''); ?>"><a href="<?php echo e(url('agenda')); ?>"><i class="ft-home"></i><span class="menu-title" data-i18n="">Agenda</span></a></li>
                     <li class=" nav-item <?php echo e((request()->is('proposal*')) ? 'active' : ''); ?>"><a href="#"><i class="ft-list"></i><span class="menu-title" data-i18n="">Usul OPD</span><span id="count_all"></span></a>
                         <ul class="menu-content">
@@ -125,9 +126,12 @@
                             </li>
                         </ul>
                     </li>
+                <?php endif; ?>
+                <?php if(Auth::user()->group == 1): ?>
                     <li class=" nav-item <?php echo e((request()->is('office*')) ? 'active' : ''); ?>"><a href="<?php echo e(url('office')); ?>"><i class="la la-building"></i><span class="menu-title" data-i18n="">OPD</span></a></li>
                     <li class=" nav-item <?php echo e((request()->is('user*')) ? 'active' : ''); ?>"><a href="<?php echo e(url('user')); ?>"><i class="ft-user"></i><span class="menu-title" data-i18n="">User</span></a></li>
-                <?php elseif(Auth::user()->group == 3): ?>
+                <?php endif; ?>
+                <?php if(Auth::user()->group == 3): ?>
                     <li class=" nav-item <?php echo e((request()->is('proposal/create*')) ? 'active' : ''); ?>"><a href="<?php echo e(url('proposal/create')); ?>"><i class="ft-plus-square"></i><span class="menu-title" data-i18n="">Buat Pengusulan</span></a></li>
                     <li class=" nav-item <?php echo e((request()->is('proposal*')) ? 'active' : ''); ?>"><a href="#"><i class="ft-list"></i><span class="menu-title" data-i18n="">Data Pengusulan</span><span id="count_all"></span></a>
                         <ul class="menu-content">
