@@ -107,11 +107,21 @@
                 <li class=" nav-item <?php echo e((request()->is('dashboard*')) ? 'active' : ''); ?>"><a href="<?php echo e(url('/dashboard')); ?>"><i class="ft-home"></i><span class="menu-title" data-i18n="">Dashboard</span></a></li>
 				<?php if(Auth::user()->group == 1): ?>
                     <li class=" nav-item <?php echo e((request()->is('agenda*')) ? 'active' : ''); ?>"><a href="<?php echo e(url('agenda')); ?>"><i class="ft-home"></i><span class="menu-title" data-i18n="">Agenda</span></a></li>
-                    <li class=" nav-item <?php echo e((request()->is('proposal*')) ? 'active' : ''); ?>"><a href="#"><i class="ft-list"></i><span class="menu-title" data-i18n="">Usul OPD</span><span class="badge badge badge-info badge-pill float-right mr-2">3</span></a>
+                    <li class=" nav-item <?php echo e((request()->is('proposal*')) ? 'active' : ''); ?>"><a href="#"><i class="ft-list"></i><span class="menu-title" data-i18n="">Usul OPD</span><span id="count_all"></span></a>
                         <ul class="menu-content">
-                            <li  class="<?php echo e((request()->is('proposal_income*')) ? 'active' : ''); ?>"><a class="menu-item" href="<?php echo e(url('proposal_income')); ?>">Masuk</a>
-                            </li>
-                            <li  class="<?php echo e((request()->is('proposal_process*')) ? 'active' : ''); ?>"><a class="menu-item" href="<?php echo e(url('proposal_process')); ?>">Diproses</a>
+                            <li  class="<?php echo e((request()->is('proposal_income*')) ? 'active' : ''); ?>"><a class="menu-item" href="<?php echo e(url('proposal_income')); ?>">Masuk<span id="count_request"></span></a></li>
+                            <li  class="<?php echo e((request()->is('proposal_process*')) ? 'active' : ''); ?>"><a class="menu-item" href="<?php echo e(url('proposal_process')); ?>">Diproses<span id="count_process"></span></a></li>
+                            <li  class="<?php echo e((request()->is('proposal_done*')) ? 'active' : ''); ?>"><a class="menu-item" href="<?php echo e(url('proposal_done')); ?>">Selesai<span id="count_done"></span></a></li>
+                        </ul>
+                    </li>
+                    <li class=" nav-item <?php echo e((request()->is('proposal*')) ? 'active' : ''); ?>"><a href="#"><i class="ft-list"></i><span class="menu-title" data-i18n="">Harmonisasi</span><span id="count2_1"></span></a>
+                        <ul class="menu-content">
+                            <li  class="<?php echo e((request()->is('harmonizations*')) ? 'active' : ''); ?>"><a class="menu-item" href="<?php echo e(url('harmonizations')); ?>">Perbaikan<span id="count2_2"></span></a>
+                            <li  class="<?php echo e((request()->is('harmonization_opd*')) ? 'active' : ''); ?>"><a class="menu-item" href="<?php echo e(url('harmonization_opd')); ?>">Terkirim Ke OPD<span id="count2_3"></span></a>
+                            <li  class="<?php echo e((request()->is('harmonization_get_document*')) ? 'active' : ''); ?>"><a class="menu-item" href="<?php echo e(url('harmonization_get_document')); ?>">Telah Ambil Berkas<span id="count2_4"></span></a>
+                            <li  class="<?php echo e((request()->is('harmonization_send_document*')) ? 'active' : ''); ?>"><a class="menu-item" href="<?php echo e(url('harmonization_send_document')); ?>">File perbaikan OPD<span id="count2_5"></span></a>
+                            <li  class="<?php echo e((request()->is('harmonization_verification*')) ? 'active' : ''); ?>"><a class="menu-item" href="<?php echo e(url('harmonization_verification')); ?>">Verifikasi Dokumen<span id="count2_6"></span></a>
+                            <li  class="<?php echo e((request()->is('harmonization_done*')) ? 'active' : ''); ?>"><a class="menu-item" href="<?php echo e(url('harmonization_done')); ?>">Selesai<span id="count2_7"></span></a>
                             </li>
                         </ul>
                     </li>
@@ -119,14 +129,22 @@
                     <li class=" nav-item <?php echo e((request()->is('user*')) ? 'active' : ''); ?>"><a href="<?php echo e(url('user')); ?>"><i class="ft-user"></i><span class="menu-title" data-i18n="">User</span></a></li>
                 <?php elseif(Auth::user()->group == 3): ?>
                     <li class=" nav-item <?php echo e((request()->is('proposal/create*')) ? 'active' : ''); ?>"><a href="<?php echo e(url('proposal/create')); ?>"><i class="ft-plus-square"></i><span class="menu-title" data-i18n="">Buat Pengusulan</span></a></li>
-                    <li class=" nav-item <?php echo e((request()->is('proposal*')) ? 'active' : ''); ?>"><a href="#"><i class="ft-list"></i><span class="menu-title" data-i18n="">List Pengusulan</span><span class="badge badge badge-info badge-pill float-right mr-2">3</span></a>
+                    <li class=" nav-item <?php echo e((request()->is('proposal*')) ? 'active' : ''); ?>"><a href="#"><i class="ft-list"></i><span class="menu-title" data-i18n="">Data Pengusulan</span><span id="count_all"></span></a>
                         <ul class="menu-content">
-                            <li class="<?php echo e((request()->is('proposal_income*')) ? 'active' : ''); ?>"><a class="menu-item" href="<?php echo e(url('proposal_income')); ?>">Terkirim</a>
-                            </li>
-                            <li class="<?php echo e((request()->is('proposal_revision*')) ? 'active' : ''); ?>"><a class="menu-item" href="<?php echo e(url('proposal_revision')); ?>">Tidak Lengkap</a>
-                            </li>
-                            <li class="<?php echo e((request()->is('proposal_process*')) ? 'active' : ''); ?>"><a class="menu-item" href="<?php echo e(url('proposal_process')); ?>">Diproses</a>
-                            </li>
+                            <li class="<?php echo e((request()->is('proposal_income*')) ? 'active' : ''); ?>"><a class="menu-item" href="<?php echo e(url('proposal_income')); ?>">Terkirim<span id="count_request"></span></a></li>
+                            <li class="<?php echo e((request()->is('proposal_revision*')) ? 'active' : ''); ?>"><a class="menu-item" href="<?php echo e(url('proposal_revision')); ?>">Tidak Lengkap<span id="count_fixing"></span></a></li>
+                            <li class="<?php echo e((request()->is('proposal_process*')) ? 'active' : ''); ?>"><a class="menu-item" href="<?php echo e(url('proposal_process')); ?>">Diproses<span id="count_process"></span></a></li>
+                            <li  class="<?php echo e((request()->is('proposal_done*')) ? 'active' : ''); ?>"><a class="menu-item" href="<?php echo e(url('proposal_done')); ?>">Selesai<span id="count_done"></span></a></li>
+                        </ul>
+                    </li>
+                    <li class=" nav-item <?php echo e((request()->is('proposal*')) ? 'active' : ''); ?>"><a href="#"><i class="ft-list"></i><span class="menu-title" data-i18n="">Harmonisasi</span><span id="count2_1"></span></a>
+                        <ul class="menu-content">
+                            <li  class="<?php echo e((request()->is('harmonization_opd*')) ? 'active' : ''); ?>"><a class="menu-item" href="<?php echo e(url('harmonization_opd')); ?>">Dalam Perbaikian <br>Admin<span id="count2_2"></span></a></li>
+                            <li  class="<?php echo e((request()->is('harmonization_get_document*')) ? 'active' : ''); ?>"><a class="menu-item" href="<?php echo e(url('harmonization_get_document')); ?>">Telah Diperbaiki <br>Admin<span id="count2_3"></span></a></li>
+                            <li  class="<?php echo e((request()->is('harmonization_get_hardcopy*')) ? 'active' : ''); ?>"><a class="menu-item" href="<?php echo e(url('harmonization_get_hardcopy')); ?>">Telah Ambil Berkas <br>Fisik<span id="count2_4"></span></a></li>
+                            <li  class="<?php echo e((request()->is('harmonization_send_document*')) ? 'active' : ''); ?>"><a class="menu-item" href="<?php echo e(url('harmonization_send_document')); ?>">Telah Mengirim File <br>ke Admin<span id="count2_5"></span></a></li>
+                            <li  class="<?php echo e((request()->is('harmonization_verification*')) ? 'active' : ''); ?>"><a class="menu-item" href="<?php echo e(url('harmonization_verification')); ?>">Verifikasi Dokumen<span id="count2_6"></span></a>
+                            <li  class="<?php echo e((request()->is('harmonization_done*')) ? 'active' : ''); ?>"><a class="menu-item" href="<?php echo e(url('harmonization_done')); ?>">Selesai<span id="count2_7"></span></a></li>
                         </ul>
                     </li>
                 <?php endif; ?>
@@ -139,12 +157,7 @@
 	<?php echo $__env->yieldContent('konten'); ?>
 
     <footer class="footer footer-static footer-light navbar-border navbar-shadow">
-        <div class="clearfix blue-grey lighten-2 text-sm-center mb-0 px-2"><span class="float-md-left d-block d-md-inline-block">2019 &copy; Copyright <a class="text-bold-800 grey darken-2" href="https://themeselection.com" target="_blank">ThemeSelection</a></span>
-            <ul class="list-inline float-md-right d-block d-md-inline-blockd-none d-lg-block mb-0">
-                <li class="list-inline-item"><a class="my-1" href="https://themeselection.com/" target="_blank"> More themes</a></li>
-                <li class="list-inline-item"><a class="my-1" href="https://themeselection.com/support" target="_blank"> Support</a></li>
-            </ul>
-        </div>
+        <div class="clearfix blue-grey lighten-2 text-sm-center mb-0 px-2"><span class="float-md-left d-block d-md-inline-block">2022</span></div>
     </footer>
     <!-- END: Footer-->
 
@@ -167,4 +180,222 @@
 </body>
 <!-- END: Body-->
 
+<script type="text/javascript">
+    function cek1(){
+        url = "<?php echo e(url('/count/all')); ?>" ;
+        $.get(url, function(data, status){
+        
+        data = JSON.parse(data);
+        if( data > 0 )
+            options = '<span class="badge badge badge-info badge-pill float-right mr-2">'+data+'</span>';
+        else
+            options = '';
+        $("#count_all").html( options );
+        setTimeout(function(){
+            cek1();
+        }, 5000);
+
+        });
+    }
+    cek1();
+
+    function cek2(){
+        url = "<?php echo e(url('/count/request')); ?>" ;
+        $.get(url, function(data, status){
+        
+        data = JSON.parse(data);
+        if( data > 0 )
+            options = '<span class="badge badge badge-info badge-pill float-right mr-2">'+data+'</span>';
+        else
+            options = '';
+        $("#count_request").html( options );
+        setTimeout(function(){
+            cek2();
+        }, 5000);
+
+        });
+    }
+    cek2();
+
+    function cek3(){
+        url = "<?php echo e(url('/count/fixing')); ?>" ;
+        $.get(url, function(data, status){
+        
+        data = JSON.parse(data);
+        if( data > 0 )
+            options = '<span class="badge badge badge-info badge-pill float-right mr-2">'+data+'</span>';
+        else
+            options = '';
+        $("#count_fixing").html( options );
+        setTimeout(function(){
+            cek3();
+        }, 5000);
+
+        });
+    }
+    cek3();
+
+    function cek4(){
+        url = "<?php echo e(url('/count/process')); ?>" ;
+        $.get(url, function(data, status){
+        
+        data = JSON.parse(data);
+        if( data > 0 )
+            options = '<span class="badge badge badge-info badge-pill float-right mr-2">'+data+'</span>';
+        else
+            options = '';
+        $("#count_process").html( options );
+        setTimeout(function(){
+            cek4();
+        }, 5000);
+
+        });
+    }
+    cek4();
+
+    function cek5(){
+        url = "<?php echo e(url('/count/done')); ?>" ;
+        $.get(url, function(data, status){
+        
+        data = JSON.parse(data);
+        if( data > 0 )
+            options = '<span class="badge badge badge-info badge-pill float-right mr-2">'+data+'</span>';
+        else
+            options = '';
+        $("#count_done").html( options );
+        setTimeout(function(){
+            cek5();
+        }, 5000);
+
+        });
+    }
+    cek5();
+
+    function cek6(){
+        url = "<?php echo e(url('count2/1')); ?>" ;
+        $.get(url, function(data, status){
+        
+        data = JSON.parse(data);
+        if( data > 0 )
+            options = '<span class="badge badge badge-info badge-pill float-right mr-2">'+data+'</span>';
+        else
+            options = '';
+        $("#count2_1").html( options );
+        setTimeout(function(){
+            cek6();
+        }, 5000);
+
+        });
+    }
+    cek6();
+
+    function cek7(){
+        url = "<?php echo e(url('count2/2')); ?>" ;
+        $.get(url, function(data, status){
+        
+        data = JSON.parse(data);
+        if( data > 0 )
+            options = '<span class="badge badge badge-info badge-pill float-right mr-2">'+data+'</span>';
+        else
+            options = '';
+        $("#count2_2").html( options );
+        setTimeout(function(){
+            cek7();
+        }, 5000);
+
+        });
+    }
+    cek7();
+
+    function cek8(){
+        url = "<?php echo e(url('count2/3')); ?>" ;
+        $.get(url, function(data, status){
+        
+        data = JSON.parse(data);
+        if( data > 0 )
+            options = '<span class="badge badge badge-info badge-pill float-right mr-2">'+data+'</span>';
+        else
+            options = '';
+        $("#count2_3").html( options );
+        setTimeout(function(){
+            cek8();
+        }, 5000);
+
+        });
+    }
+    cek8();
+
+    function cek9(){
+        url = "<?php echo e(url('count2/4')); ?>" ;
+        $.get(url, function(data, status){
+        
+        data = JSON.parse(data);
+        if( data > 0 )
+            options = '<span class="badge badge badge-info badge-pill float-right mr-2">'+data+'</span>';
+        else
+            options = '';
+        $("#count2_4").html( options );
+        setTimeout(function(){
+            cek9();
+        }, 5000);
+
+        });
+    }
+    cek9();
+
+    function cek10(){
+        url = "<?php echo e(url('count2/5')); ?>" ;
+        $.get(url, function(data, status){
+        
+        data = JSON.parse(data);
+        if( data > 0 )
+            options = '<span class="badge badge badge-info badge-pill float-right mr-2">'+data+'</span>';
+        else
+            options = '';
+        $("#count2_5").html( options );
+        setTimeout(function(){
+            cek10();
+        }, 5000);
+
+        });
+    }
+    cek10();
+
+    function cek11(){
+        url = "<?php echo e(url('count2/6')); ?>" ;
+        $.get(url, function(data, status){
+        
+        data = JSON.parse(data);
+        if( data > 0 )
+            options = '<span class="badge badge badge-info badge-pill float-right mr-2">'+data+'</span>';
+        else
+            options = '';
+        $("#count2_6").html( options );
+        setTimeout(function(){
+            cek11();
+        }, 5000);
+
+        });
+    }
+    cek11();
+
+    function cek12(){
+        url = "<?php echo e(url('count2/7')); ?>" ;
+        $.get(url, function(data, status){
+        
+        data = JSON.parse(data);
+        if( data > 0 )
+            options = '<span class="badge badge badge-info badge-pill float-right mr-2">'+data+'</span>';
+        else
+            options = '';
+        $("#count2_7").html( options );
+        setTimeout(function(){
+            cek12();
+        }, 5000);
+
+        });
+    }
+    cek12();
+
+</script>
 </html><?php /**PATH E:\workspace\diklat-siaplapor\resources\views/admin/layout.blade.php ENDPATH**/ ?>

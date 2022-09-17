@@ -63,7 +63,9 @@
                                                         <td>OPD</td>
                                                     <?php endif; ?>
                                                     <th>Status</th>
-                                                    <th style="width: 20%">#aksi</th>
+                                                    <?php if(Request::segment(1)!="proposal_done"): ?>
+                                                        <th style="width: 20%">#aksi</th>
+                                                    <?php endif; ?>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -78,24 +80,37 @@
                                             <?php endif; ?>
 											<td>
                                                 <?php if(Auth::user()->group == 1): ?>
-                                                    <?php echo e($v->status); ?>
-
+                                                    
+                                                    <?php if($v->status=="Masuk"): ?>
+                                                        <div class="badge badge-success">Usulan Masuk</div>
+                                                    <?php endif; ?>
+                                                    <?php if(Request::segment(1)=="proposal_process"): ?>
+                                                        <div class="badge badge-warning">Sedang Diproses</div>
+                                                    <?php endif; ?>
+                                                    <?php if($v->status=="Selesai"): ?>
+                                                        <div class="badge badge-success">Telah Diverifikasi dan Menunggu Perbaikan Admin</div>
+                                                    <?php endif; ?>
                                                 <?php elseif(Auth::user()->group == 3): ?>
                                                     <?php if($v->status=="Masuk"): ?>
-                                                        Terkirim
-                                                    <?php else: ?>
-                                                        <?php echo e($v->status); ?>
-
+                                                        <div class="badge badge-success">Telah Dikirim Ke Admin</div>
+                                                    <?php endif; ?>
+                                                    <?php if(Request::segment(1)=="proposal_revision"): ?>
+                                                        <div class="badge badge-danger">Usul Tidak Lengkap</div>
+                                                    <?php endif; ?>
+                                                    <?php if($v->status=="Selesai"): ?>
+                                                        <div class="badge badge-success">Telah Diverifikasi dan Menunggu Perbaikan Admin</div>
                                                     <?php endif; ?>
                                                 <?php endif; ?>    
                                             </td>
+                                            
+                                            <?php if($v->status!="Selesai"): ?>
 											<td>
                                                 <?php if(Auth::user()->group == 1): ?>
                                                     <?php if($v->status=="Masuk"): ?>
 												        <a href="<?php echo e(url(Request::segment(1).'/control_sheet/'.$v->id )); ?>" class="btn btn-sm btn-flat btn-success">Verifikasi</a>
                                                     <?php elseif($v->status=="Proses"): ?>
-												        <a href="<?php echo e(url(Request::segment(1).'/control_sheet/'.$v->id )); ?>" class="btn btn-sm btn-flat btn-primary btn-block">Cetak Disposisi</a>
-												        <a href="<?php echo e(url(Request::segment(1).'/control_sheet/'.$v->id )); ?>" class="btn btn-sm btn-flat btn-success btn-block">Proses Disposisi</a>
+												        <a href="<?php echo e(url(Request::segment(1).'/disposition_sheet/'.$v->id )); ?>" class="btn btn-sm btn-flat btn-primary btn-block">Cetak Disposisi</a>
+												        <a href="<?php echo e(url(Request::segment(1).'/disposition/'.$v->id )); ?>" class="btn btn-sm btn-flat btn-success btn-block">Proses Disposisi</a>
                                                     <?php endif; ?>
                                                 <?php elseif(Auth::user()->group == 3): ?>
                                                     <?php if($v->status=="Perbaiki"): ?>
@@ -105,6 +120,7 @@
                                                     <?php endif; ?>
                                                 <?php endif; ?>
 											</td>
+                                            <?php endif; ?>
 										</tr>
                                         
 										<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

@@ -29,6 +29,11 @@ class Proposal extends Model
         'status5',
         'desc5',
         'status',
+        'date_disposition1',
+        'date_disposition2',
+        'date_disposition3',
+        'date_disposition4',
+        'date_disposition5',
     ];
 
     public function office()

@@ -71,6 +71,7 @@
                                 <div class="form-group row">
                                     <label class="col-form-label col-sm-3 text-sm-right"> Surat Pengantar <span class="required" style="color: #dd4b39;">*</span> </label>
                                     <div class="col-sm-9">
+										<i style="font-size:10px">Ukuran File Tidak Boleh Lebih Dari 50 mb (PDF)</i><br>
                                         <div class="custom-file">
                                             <input type="file" name="cover_letter" class="custom-file-input  @if ($errors->has('cover_letter')) is-invalid @endif " id="inputGroupFile01">
                                             <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
@@ -82,6 +83,7 @@
                                 <div class="form-group row">
                                     <label class="col-form-label col-sm-3 text-sm-right"> Telaah Staf <span class="required" style="color: #dd4b39;">*</span> </label>
                                     <div class="col-sm-9">
+										<i style="font-size:10px">Ukuran File Tidak Boleh Lebih Dari 50 mb (PDF)</i><br>
                                         <div class="custom-file">
                                             <input type="file" name="review_staff" class="custom-file-input  @if ($errors->has('review_staff')) is-invalid @endif " id="inputGroupFile01">
                                             <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
@@ -93,6 +95,7 @@
                                 <div class="form-group row">
                                     <label class="col-form-label col-sm-3 text-sm-right"> Nota Dinas <span class="required" style="color: #dd4b39;">*</span> </label>
                                     <div class="col-sm-9">
+										<i style="font-size:10px">Ukuran File Tidak Boleh Lebih Dari 50 mb (PDF)</i><br>
                                         <div class="custom-file">
                                             <input type="file" name="official_memo" class="custom-file-input  @if ($errors->has('official_memo')) is-invalid @endif " id="inputGroupFile01">
                                             <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
@@ -104,6 +107,7 @@
                                 <div class="form-group row">
                                     <label class="col-form-label col-sm-3 text-sm-right"> Konsep Persetujuan Naskah Dinas <span class="required" style="color: #dd4b39;">*</span> </label>
                                     <div class="col-sm-9">
+										<i style="font-size:10px">Ukuran File Tidak Boleh Lebih Dari 50 mb (PDF)</i><br>
                                         <div class="custom-file">
                                             <input type="file" name="approval_concept" class="custom-file-input  @if ($errors->has('approval_concept')) is-invalid @endif " id="inputGroupFile01">
                                             <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
@@ -115,6 +119,7 @@
                                 <div class="form-group row">
                                     <label class="col-form-label col-sm-3 text-sm-right"> Draf SK/Pergub/Perda <span class="required" style="color: #dd4b39;">*</span> </label>
                                     <div class="col-sm-9">
+										<i style="font-size:10px">Ukuran File Tidak Boleh Lebih Dari 50 mb (doc,xls)</i><br>
                                         <div class="custom-file">
                                             <input type="file" name="draft" class="custom-file-input  @if ($errors->has('draft')) is-invalid @endif " id="inputGroupFile01">
                                             <label class="custom-file-label" for="inputGroupFile01">Choose file</label>

@@ -62,7 +62,9 @@
                                                         <td>OPD</td>
                                                     @endif
                                                     <th>Status</th>
-                                                    <th style="width: 20%">#aksi</th>
+                                                    @if(Request::segment(1)!="proposal_done")
+                                                        <th style="width: 20%">#aksi</th>
+                                                    @endif
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -77,22 +79,37 @@
                                             @endif
 											<td>
                                                 @if(Auth::user()->group == 1)
-                                                    {{ $v->status }}
+                                                    
+                                                    @if($v->status=="Masuk")
+                                                        <div class="badge badge-success">Usulan Masuk</div>
+                                                    @endif
+                                                    @if(Request::segment(1)=="proposal_process")
+                                                        <div class="badge badge-warning">Sedang Diproses</div>
+                                                    @endif
+                                                    @if($v->status=="Selesai")
+                                                        <div class="badge badge-success">Telah Diverifikasi dan Menunggu Perbaikan Admin</div>
+                                                    @endif
                                                 @elseif(Auth::user()->group == 3)
                                                     @if($v->status=="Masuk")
-                                                        Terkirim
-                                                    @else
-                                                        {{ $v->status }}
+                                                        <div class="badge badge-success">Telah Dikirim Ke Admin</div>
+                                                    @endif
+                                                    @if(Request::segment(1)=="proposal_revision")
+                                                        <div class="badge badge-danger">Usul Tidak Lengkap</div>
+                                                    @endif
+                                                    @if($v->status=="Selesai")
+                                                        <div class="badge badge-success">Telah Diverifikasi dan Menunggu Perbaikan Admin</div>
                                                     @endif
                                                 @endif    
                                             </td>
+                                            
+                                            @if($v->status!="Selesai")
 											<td>
                                                 @if(Auth::user()->group == 1)
                                                     @if($v->status=="Masuk")
 												        <a href="{{ url(Request::segment(1).'/control_sheet/'.$v->id ) }}" class="btn btn-sm btn-flat btn-success">Verifikasi</a>
                                                     @elseif($v->status=="Proses")
-												        <a href="{{ url(Request::segment(1).'/control_sheet/'.$v->id ) }}" class="btn btn-sm btn-flat btn-primary btn-block">Cetak Disposisi</a>
-												        <a href="{{ url(Request::segment(1).'/control_sheet/'.$v->id ) }}" class="btn btn-sm btn-flat btn-success btn-block">Proses Disposisi</a>
+												        <a href="{{ url(Request::segment(1).'/disposition_sheet/'.$v->id ) }}" class="btn btn-sm btn-flat btn-primary btn-block">Cetak Disposisi</a>
+												        <a href="{{ url(Request::segment(1).'/disposition/'.$v->id ) }}" class="btn btn-sm btn-flat btn-success btn-block">Proses Disposisi</a>
                                                     @endif
                                                 @elseif(Auth::user()->group == 3)
                                                     @if($v->status=="Perbaiki")
@@ -102,6 +119,7 @@
                                                     @endif
                                                 @endif
 											</td>
+                                            @endif
 										</tr>
                                         
 										@endforeach
