@@ -60,9 +60,9 @@
                                                     <th>Tentang</th>
                                                     @if(Auth::user()->group == 1 || Auth::user()->group == 2)
                                                         <td>OPD</td>
-                                                        @if(Request::segment(1)=="harmonization_done") 
-                                                        @elseif(Request::segment(1)=="harmonization_get_document") 
+                                                        @if(Request::segment(1)=="harmonization_get_document") 
                                                             <th style="width: 20%">Keterangan</th>
+                                                            <th style="width: 20%">#aksi</th>
                                                         @else
                                                             <th style="width: 20%">#aksi</th>
                                                         @endif
@@ -70,8 +70,7 @@
                                                     @elseif(Auth::user()->group == 3)
                                                     
                                                         @if(Request::segment(1)=="harmonization_opd" || Request::segment(1)=="harmonization_done") 
-                                                        @elseif(Request::segment(1)=="harmonization_send_document" || Request::segment(1)=="harmonization_verification") 
-                                                            <td>Keterangan</td>
+                                                            <th style="width: 20%">#aksi</th>
                                                         @else
                                                             <td>Keterangan</td>
                                                             <th style="width: 20%">#aksi</th>
@@ -103,6 +102,7 @@
                                                 @if(Auth::user()->group == 1)
                                                     @if(Request::segment(1)=="harmonizations") 
                                                         <td>
+                                                            <a href="{{ url(Request::segment(1).'/detail/'.$v->id ) }}" class="btn btn-sm btn-flat btn-primary btn-block">Detail</a>
                                                          @if($v->status == "perbaikan") 
                                                             <a href="{{ asset('upload/draft/'.$v->draft ) }}" target="blank" class="btn btn-sm btn-flat btn-info btn-block">Download File Draft</a>
                                                          @else
@@ -111,35 +111,59 @@
                                                             <a href="#" data-toggle="modal" data-target="#default{{ $v->id }}" class="btn btn-sm btn-flat btn-success  btn-block">Upload File Perbaikan</a>
                                                         </td>
                                                     @elseif(Request::segment(1)=="harmonization_opd") 
-                                                        <td>
+                                                        <td> 
+                                                            <a href="{{ url(Request::segment(1).'/detail/'.$v->id ) }}" class="btn btn-sm btn-flat btn-primary btn-block">Detail</a>
                                                             <a href="#" data-toggle="modal" data-target="#default2{{ $v->id }}" class="btn btn-sm btn-flat btn-danger btn-block">OPD Ambil Berkas Fisik</a>
                                                         </td>
                                                     @elseif(Request::segment(1)=="harmonization_get_document") 
                                                         <td>Menunggu File Perbaikan Dari OPD</td>
+                                                        <td><a href="{{ url(Request::segment(1).'/detail/'.$v->id ) }}" class="btn btn-sm btn-flat btn-primary btn-block">Detail</a></td>
                                                     @elseif(Request::segment(1)=="harmonization_send_document") 
                                                         <td>
+                                                            <a href="{{ url(Request::segment(1).'/detail/'.$v->id ) }}" class="btn btn-sm btn-flat btn-primary btn-block">Detail</a>
                                                             <a href="{{ asset('upload/upload_fix/'.$v->upload_fix ) }}" target="blank" class="btn btn-sm btn-flat btn-info btn-block">Download File Draft Perbaikan OPD</a>
                                                             <a href="#" data-toggle="modal" data-target="#default4{{ $v->id }}" class="btn btn-sm btn-flat btn-danger btn-block">OPD Setor Berkas Fisik</a>
                                                         </td>
                                                     @elseif(Request::segment(1)=="harmonization_verification") 
                                                         <td>
+                                                            <a href="{{ url(Request::segment(1).'/detail/'.$v->id ) }}" class="btn btn-sm btn-flat btn-primary btn-block">Detail</a>
                                                             <a href="{{ asset('upload/upload_fix/'.$v->upload_fix ) }}" target="blank" class="btn btn-sm btn-flat btn-info btn-block">Download File Draft Perbaikan OPD</a>
                                                             <a href="{{ url(Request::segment(1).'/fix_again/'.$v->id ) }}"  class="btn btn-sm btn-flat btn-danger btn-block" onclick="return confirm('Anda Yakin ?');">Perbaiki Kembali</a>
                                                             <a href="#" data-toggle="modal" data-target="#default5{{ $v->id }}" class="btn btn-sm btn-flat btn-success btn-block">Selesai</a>
                                                         </td>
+                                                    @elseif(Request::segment(1)=="harmonization_done") 
+                                                        <td>
+                                                            <a href="{{ url(Request::segment(1).'/detail/'.$v->id ) }}" class="btn btn-sm btn-flat btn-primary btn-block">Detail</a>
+                                                        </td>
                                                     @endif
 
+                                                @elseif(Auth::user()->group == 2)
+                                                
+                                                    @if(Request::segment(1)=="harmonization_get_document") 
+                                                        <td>Menunggu File Perbaikan Dari OPD</td>
+                                                        <td>
+                                                            <a href="{{ url(Request::segment(1).'/detail/'.$v->id ) }}" class="btn btn-sm btn-flat btn-primary btn-block">Detail</a>
+                                                        </td>
+                                                    @else
+                                                        <td>
+                                                            <a href="{{ url(Request::segment(1).'/detail/'.$v->id ) }}" class="btn btn-sm btn-flat btn-primary btn-block">Detail</a>
+                                                        </td>
+                                                    @endif
                                                 @elseif(Auth::user()->group == 3)
 
                                                     @if($v->status == "perbaikan" || $v->status == "perbaiki kembali" || $v->status == "kirim ke admin" || $v->status == "setor berkas fisik" || $v->status == "selesai") 
+                                                        <td>
+                                                            <a href="{{ url(Request::segment(1).'/detail/'.$v->id ) }}" class="btn btn-sm btn-flat btn-primary btn-block">Detail</a>
+                                                        </td>
                                                     @elseif($v->status == "kirim ke opd") 
                                                         <td>
+                                                            <a href="{{ url(Request::segment(1).'/detail/'.$v->id ) }}" class="btn btn-sm btn-flat btn-primary btn-block">Detail</a>
                                                             <a href="{{ asset('upload/upload_fix/'.$v->upload_fix ) }}" target="blank" class="btn btn-sm btn-flat btn-info btn-block">Download File Perbaikan</a>
                                                         </td>
                                                     @elseif($v->status == "ambil berkas fisik") 
                                                         <td>
-                                                            
-                                                        <a href="{{ asset('upload/upload_fix/'.$v->upload_fix ) }}" target="blank" class="btn btn-sm btn-flat btn-info btn-block">Download File Perbaikan</a>
+                                                            <a href="{{ url(Request::segment(1).'/detail/'.$v->id ) }}" class="btn btn-sm btn-flat btn-primary btn-block">Detail</a>
+                                                            <a href="{{ asset('upload/upload_fix/'.$v->upload_fix ) }}" target="blank" class="btn btn-sm btn-flat btn-info btn-block">Download File Perbaikan</a>
                                                             <a href="#" data-toggle="modal" data-target="#default3{{ $v->id }}" class="btn btn-sm btn-flat btn-success  btn-block">Upload File Perbaikan</a>
                                                         </td>
                                                     @else<td></td>@endif

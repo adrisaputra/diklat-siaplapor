@@ -112,7 +112,7 @@
                         <ul class="menu-content">
                             <li  class="<?php echo e((request()->is('proposal_income*')) ? 'active' : ''); ?>"><a class="menu-item" href="<?php echo e(url('proposal_income')); ?>">Masuk<span id="count_request"></span></a></li>
                             <li  class="<?php echo e((request()->is('proposal_process*')) ? 'active' : ''); ?>"><a class="menu-item" href="<?php echo e(url('proposal_process')); ?>">Diproses<span id="count_process"></span></a></li>
-                            <li  class="<?php echo e((request()->is('proposal_done*')) ? 'active' : ''); ?>"><a class="menu-item" href="<?php echo e(url('proposal_done')); ?>">Selesai<span id="count_done"></span></a></li>
+                            <li  class="<?php echo e((request()->is('proposal_done*')) ? 'active' : ''); ?>"><a class="menu-item" href="<?php echo e(url('proposal_done')); ?>">Selesai</a></li>
                         </ul>
                     </li>
                     <li class=" nav-item <?php echo e((request()->is('proposal*')) ? 'active' : ''); ?>"><a href="#"><i class="ft-list"></i><span class="menu-title" data-i18n="">Harmonisasi</span><span id="count2_1"></span></a>
@@ -122,7 +122,7 @@
                             <li  class="<?php echo e((request()->is('harmonization_get_document*')) ? 'active' : ''); ?>"><a class="menu-item" href="<?php echo e(url('harmonization_get_document')); ?>">Telah Ambil Berkas<span id="count2_4"></span></a>
                             <li  class="<?php echo e((request()->is('harmonization_send_document*')) ? 'active' : ''); ?>"><a class="menu-item" href="<?php echo e(url('harmonization_send_document')); ?>">File perbaikan OPD<span id="count2_5"></span></a>
                             <li  class="<?php echo e((request()->is('harmonization_verification*')) ? 'active' : ''); ?>"><a class="menu-item" href="<?php echo e(url('harmonization_verification')); ?>">Verifikasi Dokumen<span id="count2_6"></span></a>
-                            <li  class="<?php echo e((request()->is('harmonization_done*')) ? 'active' : ''); ?>"><a class="menu-item" href="<?php echo e(url('harmonization_done')); ?>">Selesai<span id="count2_7"></span></a>
+                            <li  class="<?php echo e((request()->is('harmonization_done*')) ? 'active' : ''); ?>"><a class="menu-item" href="<?php echo e(url('harmonization_done')); ?>">Selesai</span></a>
                             </li>
                         </ul>
                     </li>
@@ -138,7 +138,7 @@
                             <li class="<?php echo e((request()->is('proposal_income*')) ? 'active' : ''); ?>"><a class="menu-item" href="<?php echo e(url('proposal_income')); ?>">Terkirim<span id="count_request"></span></a></li>
                             <li class="<?php echo e((request()->is('proposal_revision*')) ? 'active' : ''); ?>"><a class="menu-item" href="<?php echo e(url('proposal_revision')); ?>">Tidak Lengkap<span id="count_fixing"></span></a></li>
                             <li class="<?php echo e((request()->is('proposal_process*')) ? 'active' : ''); ?>"><a class="menu-item" href="<?php echo e(url('proposal_process')); ?>">Diproses<span id="count_process"></span></a></li>
-                            <li  class="<?php echo e((request()->is('proposal_done*')) ? 'active' : ''); ?>"><a class="menu-item" href="<?php echo e(url('proposal_done')); ?>">Selesai<span id="count_done"></span></a></li>
+                            <li  class="<?php echo e((request()->is('proposal_done*')) ? 'active' : ''); ?>"><a class="menu-item" href="<?php echo e(url('proposal_done')); ?>">Selesai</a></li>
                         </ul>
                     </li>
                     <li class=" nav-item <?php echo e((request()->is('proposal*')) ? 'active' : ''); ?>"><a href="#"><i class="ft-list"></i><span class="menu-title" data-i18n="">Harmonisasi</span><span id="count2_1"></span></a>

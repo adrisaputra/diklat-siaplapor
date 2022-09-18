@@ -96,31 +96,38 @@ Route::get('/proposal/hapus/{proposal}',[ProposalController::class, 'delete']);
 
 Route::get('/harmonizations', [HarmonizationController::class, 'index']);
 Route::get('/harmonizations/search', [HarmonizationController::class, 'search']);
+Route::get('/harmonizations/detail/{harmonization}', [HarmonizationController::class, 'detail']);
 Route::put('/harmonizations/upload_file_fix/{harmonization}', [HarmonizationController::class, 'upload_file_fix']);
 
 Route::get('/harmonization_opd', [HarmonizationController::class, 'index']);
 Route::get('/harmonization_opd/search', [HarmonizationController::class, 'search']);
+Route::get('/harmonization_opd/detail/{harmonization}', [HarmonizationController::class, 'detail']);
 Route::put('/harmonization_opd/get_document/{harmonization}', [HarmonizationController::class, 'get_document']);
 
 Route::get('/harmonization_get_document', [HarmonizationController::class, 'index']);
 Route::get('/harmonization_get_document/search', [HarmonizationController::class, 'search']);
+Route::get('/harmonization_get_document/detail/{harmonization}', [HarmonizationController::class, 'detail']);
 
 Route::get('/harmonization_get_hardcopy', [HarmonizationController::class, 'index']);
 Route::get('/harmonization_get_hardcopy/search', [HarmonizationController::class, 'search']);
+Route::get('/harmonization_get_hardcopy/detail/{harmonization}', [HarmonizationController::class, 'detail']);
 Route::put('/harmonization_get_hardcopy/send_document/{harmonization}', [HarmonizationController::class, 'send_document']);
 
 Route::get('/harmonization_send_document', [HarmonizationController::class, 'index']);
 Route::get('/harmonization_send_document/search', [HarmonizationController::class, 'search']);
+Route::get('/harmonization_send_document/detail/{harmonization}', [HarmonizationController::class, 'detail']);
 Route::put('/harmonization_send_document/deposit_document/{harmonization}', [HarmonizationController::class, 'deposit_document']);
 
 Route::get('/harmonization_verification', [HarmonizationController::class, 'index']);
 Route::get('/harmonization_verification/search', [HarmonizationController::class, 'search']);
+Route::get('/harmonization_verification/detail/{harmonization}', [HarmonizationController::class, 'detail']);
 Route::put('/harmonization_verification/verification/{harmonization}', [HarmonizationController::class, 'verification']);
 Route::get('/harmonization_verification/fix_again/{harmonization}', [HarmonizationController::class, 'fix_again']);
 Route::put('/harmonization_verification/done/{harmonization}', [HarmonizationController::class, 'done']);
 
 Route::get('/harmonization_done', [HarmonizationController::class, 'index']);
 Route::get('/harmonization_done/search', [HarmonizationController::class, 'search']);
+Route::get('/harmonization_done/detail/{harmonization}', [HarmonizationController::class, 'detail']);
 
 ## OPD
 Route::get('/office', [OfficeController::class, 'index']);

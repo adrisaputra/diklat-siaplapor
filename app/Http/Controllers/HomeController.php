@@ -35,7 +35,7 @@ class HomeController extends Controller
     {
         if(Auth::user()->group == 1){
             if($request->segment(2)=="all"){
-                $proposal = Proposal::orderBy('id','DESC')->count();
+                $proposal = Proposal::where('status',"!=",'Selesai')->orderBy('id','DESC')->count();
             } else if($request->segment(2)=="request"){
                 $proposal = Proposal::where('status','Masuk')->orderBy('id','DESC')->count();
             } else if($request->segment(2)=="process"){
@@ -45,7 +45,7 @@ class HomeController extends Controller
             }
         } else {
             if($request->segment(2)=="all"){
-                $proposal = Proposal::where('office_id',Auth::user()->office_id)->orderBy('id','DESC')->count();
+                $proposal = Proposal::where('office_id',Auth::user()->office_id)->where('status',"!=",'Selesai')->orderBy('id','DESC')->count();
             } else if($request->segment(2)=="request"){
                 $proposal = Proposal::where('office_id',Auth::user()->office_id)->where('status','Masuk')->orderBy('id','DESC')->count();
             } else if($request->segment(2)=="fixing"){
@@ -66,7 +66,7 @@ class HomeController extends Controller
         if(Auth::user()->group == 1){
             if($request->segment(2)=="1"){
                 $proposal = Proposal::join('harmonizations', 'proposals.id', '=', 'harmonizations.id')
-                            ->orderBy('proposals.id','DESC')->count();
+                            ->where('harmonizations.status','!=','selesai')->orderBy('proposals.id','DESC')->count();
             } else if($request->segment(2)=="2"){
                 $proposal = Proposal::join('harmonizations', 'proposals.id', '=', 'harmonizations.id')
                             ->where(function ($query) {

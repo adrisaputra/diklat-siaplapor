@@ -61,9 +61,9 @@
                                                     <th>Tentang</th>
                                                     <?php if(Auth::user()->group == 1 || Auth::user()->group == 2): ?>
                                                         <td>OPD</td>
-                                                        <?php if(Request::segment(1)=="harmonization_done"): ?> 
-                                                        <?php elseif(Request::segment(1)=="harmonization_get_document"): ?> 
+                                                        <?php if(Request::segment(1)=="harmonization_get_document"): ?> 
                                                             <th style="width: 20%">Keterangan</th>
+                                                            <th style="width: 20%">#aksi</th>
                                                         <?php else: ?>
                                                             <th style="width: 20%">#aksi</th>
                                                         <?php endif; ?>
@@ -71,8 +71,7 @@
                                                     <?php elseif(Auth::user()->group == 3): ?>
                                                     
                                                         <?php if(Request::segment(1)=="harmonization_opd" || Request::segment(1)=="harmonization_done"): ?> 
-                                                        <?php elseif(Request::segment(1)=="harmonization_send_document" || Request::segment(1)=="harmonization_verification"): ?> 
-                                                            <td>Keterangan</td>
+                                                            <th style="width: 20%">#aksi</th>
                                                         <?php else: ?>
                                                             <td>Keterangan</td>
                                                             <th style="width: 20%">#aksi</th>
@@ -104,6 +103,7 @@
                                                 <?php if(Auth::user()->group == 1): ?>
                                                     <?php if(Request::segment(1)=="harmonizations"): ?> 
                                                         <td>
+                                                            <a href="<?php echo e(url(Request::segment(1).'/detail/'.$v->id )); ?>" class="btn btn-sm btn-flat btn-primary btn-block">Detail</a>
                                                          <?php if($v->status == "perbaikan"): ?> 
                                                             <a href="<?php echo e(asset('upload/draft/'.$v->draft )); ?>" target="blank" class="btn btn-sm btn-flat btn-info btn-block">Download File Draft</a>
                                                          <?php else: ?>
@@ -112,35 +112,59 @@
                                                             <a href="#" data-toggle="modal" data-target="#default<?php echo e($v->id); ?>" class="btn btn-sm btn-flat btn-success  btn-block">Upload File Perbaikan</a>
                                                         </td>
                                                     <?php elseif(Request::segment(1)=="harmonization_opd"): ?> 
-                                                        <td>
+                                                        <td> 
+                                                            <a href="<?php echo e(url(Request::segment(1).'/detail/'.$v->id )); ?>" class="btn btn-sm btn-flat btn-primary btn-block">Detail</a>
                                                             <a href="#" data-toggle="modal" data-target="#default2<?php echo e($v->id); ?>" class="btn btn-sm btn-flat btn-danger btn-block">OPD Ambil Berkas Fisik</a>
                                                         </td>
                                                     <?php elseif(Request::segment(1)=="harmonization_get_document"): ?> 
                                                         <td>Menunggu File Perbaikan Dari OPD</td>
+                                                        <td><a href="<?php echo e(url(Request::segment(1).'/detail/'.$v->id )); ?>" class="btn btn-sm btn-flat btn-primary btn-block">Detail</a></td>
                                                     <?php elseif(Request::segment(1)=="harmonization_send_document"): ?> 
                                                         <td>
+                                                            <a href="<?php echo e(url(Request::segment(1).'/detail/'.$v->id )); ?>" class="btn btn-sm btn-flat btn-primary btn-block">Detail</a>
                                                             <a href="<?php echo e(asset('upload/upload_fix/'.$v->upload_fix )); ?>" target="blank" class="btn btn-sm btn-flat btn-info btn-block">Download File Draft Perbaikan OPD</a>
                                                             <a href="#" data-toggle="modal" data-target="#default4<?php echo e($v->id); ?>" class="btn btn-sm btn-flat btn-danger btn-block">OPD Setor Berkas Fisik</a>
                                                         </td>
                                                     <?php elseif(Request::segment(1)=="harmonization_verification"): ?> 
                                                         <td>
+                                                            <a href="<?php echo e(url(Request::segment(1).'/detail/'.$v->id )); ?>" class="btn btn-sm btn-flat btn-primary btn-block">Detail</a>
                                                             <a href="<?php echo e(asset('upload/upload_fix/'.$v->upload_fix )); ?>" target="blank" class="btn btn-sm btn-flat btn-info btn-block">Download File Draft Perbaikan OPD</a>
                                                             <a href="<?php echo e(url(Request::segment(1).'/fix_again/'.$v->id )); ?>"  class="btn btn-sm btn-flat btn-danger btn-block" onclick="return confirm('Anda Yakin ?');">Perbaiki Kembali</a>
                                                             <a href="#" data-toggle="modal" data-target="#default5<?php echo e($v->id); ?>" class="btn btn-sm btn-flat btn-success btn-block">Selesai</a>
                                                         </td>
+                                                    <?php elseif(Request::segment(1)=="harmonization_done"): ?> 
+                                                        <td>
+                                                            <a href="<?php echo e(url(Request::segment(1).'/detail/'.$v->id )); ?>" class="btn btn-sm btn-flat btn-primary btn-block">Detail</a>
+                                                        </td>
                                                     <?php endif; ?>
 
+                                                <?php elseif(Auth::user()->group == 2): ?>
+                                                
+                                                    <?php if(Request::segment(1)=="harmonization_get_document"): ?> 
+                                                        <td>Menunggu File Perbaikan Dari OPD</td>
+                                                        <td>
+                                                            <a href="<?php echo e(url(Request::segment(1).'/detail/'.$v->id )); ?>" class="btn btn-sm btn-flat btn-primary btn-block">Detail</a>
+                                                        </td>
+                                                    <?php else: ?>
+                                                        <td>
+                                                            <a href="<?php echo e(url(Request::segment(1).'/detail/'.$v->id )); ?>" class="btn btn-sm btn-flat btn-primary btn-block">Detail</a>
+                                                        </td>
+                                                    <?php endif; ?>
                                                 <?php elseif(Auth::user()->group == 3): ?>
 
                                                     <?php if($v->status == "perbaikan" || $v->status == "perbaiki kembali" || $v->status == "kirim ke admin" || $v->status == "setor berkas fisik" || $v->status == "selesai"): ?> 
+                                                        <td>
+                                                            <a href="<?php echo e(url(Request::segment(1).'/detail/'.$v->id )); ?>" class="btn btn-sm btn-flat btn-primary btn-block">Detail</a>
+                                                        </td>
                                                     <?php elseif($v->status == "kirim ke opd"): ?> 
                                                         <td>
+                                                            <a href="<?php echo e(url(Request::segment(1).'/detail/'.$v->id )); ?>" class="btn btn-sm btn-flat btn-primary btn-block">Detail</a>
                                                             <a href="<?php echo e(asset('upload/upload_fix/'.$v->upload_fix )); ?>" target="blank" class="btn btn-sm btn-flat btn-info btn-block">Download File Perbaikan</a>
                                                         </td>
                                                     <?php elseif($v->status == "ambil berkas fisik"): ?> 
                                                         <td>
-                                                            
-                                                        <a href="<?php echo e(asset('upload/upload_fix/'.$v->upload_fix )); ?>" target="blank" class="btn btn-sm btn-flat btn-info btn-block">Download File Perbaikan</a>
+                                                            <a href="<?php echo e(url(Request::segment(1).'/detail/'.$v->id )); ?>" class="btn btn-sm btn-flat btn-primary btn-block">Detail</a>
+                                                            <a href="<?php echo e(asset('upload/upload_fix/'.$v->upload_fix )); ?>" target="blank" class="btn btn-sm btn-flat btn-info btn-block">Download File Perbaikan</a>
                                                             <a href="#" data-toggle="modal" data-target="#default3<?php echo e($v->id); ?>" class="btn btn-sm btn-flat btn-success  btn-block">Upload File Perbaikan</a>
                                                         </td>
                                                     <?php else: ?><td></td><?php endif; ?>

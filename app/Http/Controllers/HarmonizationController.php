@@ -211,6 +211,16 @@ class HarmonizationController extends Controller
         return view('admin.harmonization.index',compact('title','proposal'));
     }
 
+    ## Detail
+   public function detail(Harmonization $harmonization)
+   {
+        $title = "Harmonisasi";
+        $proposal = Proposal::where('id',$harmonization->id)->first();
+        $view=view('admin.harmonization.detail', compact('title','harmonization','proposal'));
+        $view=$view->render();
+        return $view;
+   }
+
     ## Admin upload file perbaikan ke OPD
    public function upload_file_fix(Request $request, Harmonization $harmonization)
    {

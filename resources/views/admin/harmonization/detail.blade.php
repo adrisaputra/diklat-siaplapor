@@ -31,24 +31,25 @@
                                 <div class="card-header">
                                     <h4 class="card-title">Detail {{ __($title) }}</h4>
                                 </div>
+                                <p><center style="font-size:20px;"> Data Usulan</center></p>
                                 <div class="form-group row">
 									<label class="col-form-label col-sm-3 text-sm-right"> Tanggal Usul </label>
 									<div class="col-sm-9">
-										<input type="text" class="form-control" value="{{ $proposal->date }}">
+										<input type="text" class="form-control" value="{{ date('d-m-Y', strtotime($proposal->date)) }}" readonly>
 									</div>
 								</div>
 	
                                 <div class="form-group row">
 									<label class="col-form-label col-sm-3 text-sm-right"> Jenis Usul</label>
 									<div class="col-sm-9">
-										<input type="text" class="form-control" value="{{ $proposal->type }}">
+										<input type="text" class="form-control" value="{{ $proposal->type }}" readonly>
 									</div>
 								</div>
 
                                 <div class="form-group row">
 									<label class="col-form-label col-sm-3 text-sm-right"> Tentang</label>
 									<div class="col-sm-9">
-										<input type="text" class="form-control" value="{{ $proposal->about }}">
+										<input type="text" class="form-control" value="{{ $proposal->about }}" readonly>
 									</div>
 								</div>
 
@@ -87,10 +88,74 @@
 									</div>
 								</div>
 
+                                <hr>
+                                
+                                @if($harmonization->upload_fix)
+                                
+                                    <p><center style="font-size:20px;"> Data Perbaikan</center></p>
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-sm-3 text-sm-right"> File Perbaikan</label>
+                                        <div class="col-sm-9">
+                                            <a href="{{ asset('upload/upload_fix/'.$harmonization->upload_fix ) }}" target="blank" class="btn btn-sm btn-flat btn-info">Lihat File</a>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-sm-3 text-sm-right"> Tanggal Upload </label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" value="{{ date('d-m-Y', strtotime($harmonization->upload_date)) }}" readonly>
+                                        </div>
+                                    </div>
+        
+                                @endif
+
+                                @if($harmonization->taker_name)
+                                
+                                    <p><center style="font-size:20px;"> Data Pengambil Berkas</center></p>
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-sm-3 text-sm-right"> Nama Pengambil Berkas Fisik </label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" value="{{ $harmonization->taker_name }}" readonly>
+                                        </div>
+                                    </div>
+        
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-sm-3 text-sm-right"> No HP. Pengambil Berkas Fisik </label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" value="{{ $harmonization->taker_phone }}" readonly>
+                                        </div>
+                                    </div>
+        
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-sm-3 text-sm-right"> Tanggal Ambil Berkas Fisik </label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" value="{{ date('d-m-Y', strtotime($harmonization->taker_date)) }}" readonly>
+                                        </div>
+                                    </div>
+        
+                                @endif
+                                @if($harmonization->depositor_name)
+                                
+                                    <p><center style="font-size:20px;"> Data Penyetor Berkas</center></p>
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-sm-3 text-sm-right"> Nama Penyetor Berkas Fisik </label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" value="{{ $harmonization->depositor_name }}" readonly>
+                                        </div>
+                                    </div>
+        
+                                    <div class="form-group row">
+                                        <label class="col-form-label col-sm-3 text-sm-right"> Tanggal Setor Berkas Fisik </label>
+                                        <div class="col-sm-9">
+                                            <input type="text" class="form-control" value="{{ $harmonization->depositor_date }}" readonly>
+                                        </div>
+                                    </div>
+        
+                                @endif
 								<br><br>
 								<div class="form-group row">
-									<div class="col-sm-10 ml-sm-auto">
-										<a href="{{ url('/'.Request::segment(1)) }}" class="btn btn-warning">kembali</a>
+									<div class="col-sm-12 ml-sm-auto">
+										<a href="{{ url('/'.Request::segment(1)) }}" class="btn btn-warning">Kembali</a>
 									</div>
 								</div>
                                 </div>
