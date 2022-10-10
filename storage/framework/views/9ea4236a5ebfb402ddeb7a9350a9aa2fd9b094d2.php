@@ -109,47 +109,50 @@
         
                                 <?php endif; ?>
 
+                                <hr>
                                 <?php if($harmonization->taker_name): ?>
                                 
-                                    <p><center style="font-size:20px;"> Data Pengambil Berkas</center></p>
-                                    <div class="form-group row">
-                                        <label class="col-form-label col-sm-3 text-sm-right"> Nama Pengambil Berkas Fisik </label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control" value="<?php echo e($harmonization->taker_name); ?>" readonly>
-                                        </div>
-                                    </div>
-        
-                                    <div class="form-group row">
-                                        <label class="col-form-label col-sm-3 text-sm-right"> No HP. Pengambil Berkas Fisik </label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control" value="<?php echo e($harmonization->taker_phone); ?>" readonly>
-                                        </div>
-                                    </div>
-        
-                                    <div class="form-group row">
-                                        <label class="col-form-label col-sm-3 text-sm-right"> Tanggal Ambil Berkas Fisik </label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control" value="<?php echo e(date('d-m-Y', strtotime($harmonization->taker_date))); ?>" readonly>
-                                        </div>
-                                    </div>
-        
+                                    <p><center style="font-size:20px;"> Data Riwayat Pengambil Berkas</center></p>
+
+                                        <table class="table">
+                                            <thead class="bg-info white">
+                                                <tr>
+											<th>Nama Pengambil Berkas Fisik</th>
+											<th>No HP. Pengambil Berkas Fisik</th>
+											<th>Tanggal Ambil Berkas Fisik</th>
+                                            <tbody>
+                                            <?php $__currentLoopData = $history_taker; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $v): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <tr>
+                                                <td><?php echo e($v->taker_name); ?></td>
+                                                <td><?php echo e($v->taker_phone); ?></td>
+                                                <td><?php echo e(date('d-m-Y', strtotime($v->taker_date))); ?></td>
+                                            </tr>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                            </tbody>
+                                        </table>
+
                                 <?php endif; ?>
+                                
+                                <hr>
                                 <?php if($harmonization->depositor_name): ?>
                                 
-                                    <p><center style="font-size:20px;"> Data Penyetor Berkas</center></p>
-                                    <div class="form-group row">
-                                        <label class="col-form-label col-sm-3 text-sm-right"> Nama Penyetor Berkas Fisik </label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control" value="<?php echo e($harmonization->depositor_name); ?>" readonly>
-                                        </div>
-                                    </div>
-        
-                                    <div class="form-group row">
-                                        <label class="col-form-label col-sm-3 text-sm-right"> Tanggal Setor Berkas Fisik </label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control" value="<?php echo e($harmonization->depositor_date); ?>" readonly>
-                                        </div>
-                                    </div>
+                                    <p><center style="font-size:20px;"> Data Riwayat Penyetor Berkas</center></p>
+                                    
+                                        <table class="table">
+                                            <thead class="bg-info white">
+                                                <tr>
+                                            <th>Nama Penyetor Berkas Fisik</th>
+                                            <th>Tanggal Setor Berkas Fisik</th>
+                                            <tbody>
+                                            <?php $__currentLoopData = $history_depositor; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $v): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <tr>
+                                                <td><?php echo e($v->depositor_name); ?></td>
+                                                <td><?php echo e(date('d-m-Y', strtotime($v->depositor_date))); ?></td>
+                                            </tr>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                            </tbody>
+                                        </table>
+
         
                                 <?php endif; ?>
 								<br><br>

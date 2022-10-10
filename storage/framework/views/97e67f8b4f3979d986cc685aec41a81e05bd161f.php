@@ -9,7 +9,7 @@
     <meta name="description" content="Chameleon Admin is a modern Bootstrap 4 webapp &amp; admin dashboard html template with a large number of components, elegant design, clean and organized code.">
     <meta name="keywords" content="admin template, Chameleon admin template, dashboard template, gradient admin template, responsive admin template, webapp, eCommerce dashboard, analytic dashboard">
     <meta name="author" content="ThemeSelect">
-    <title>Siap Lapor</title>
+    <title>Selamat Datang di Siprokumda (Sistem Infromasi Produk Hukum Daerah)</title>
     <link rel="apple-touch-icon" href="<?php echo e(asset('/upload/logo/sultra.png')); ?>">
     <link rel="shortcut icon" type="image/x-icon" href="<?php echo e(asset('/upload/logo/sultra.png')); ?>"><link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -112,7 +112,7 @@
                         <ul class="menu-content">
                             <li  class="<?php echo e((request()->is('proposal_income*')) ? 'active' : ''); ?>"><a class="menu-item" href="<?php echo e(url('proposal_income')); ?>">Masuk<span id="count_request"></span></a></li>
                             <li  class="<?php echo e((request()->is('proposal_process*')) ? 'active' : ''); ?>"><a class="menu-item" href="<?php echo e(url('proposal_process')); ?>">Diproses<span id="count_process"></span></a></li>
-                            <li  class="<?php echo e((request()->is('proposal_done*')) ? 'active' : ''); ?>"><a class="menu-item" href="<?php echo e(url('proposal_done')); ?>">Selesai</a></li>
+                            <li  class="<?php echo e((request()->is('proposal_done*')) ? 'active' : ''); ?>"><a class="menu-item" href="<?php echo e(url('proposal_done')); ?>">Selesai<span id="count_done"></span></a></li>
                         </ul>
                     </li>
                     <li class=" nav-item <?php echo e((request()->is('proposal*')) ? 'active' : ''); ?>"><a href="#"><i class="ft-list"></i><span class="menu-title" data-i18n="">Harmonisasi</span><span id="count2_1"></span></a>
@@ -138,7 +138,7 @@
                             <li class="<?php echo e((request()->is('proposal_income*')) ? 'active' : ''); ?>"><a class="menu-item" href="<?php echo e(url('proposal_income')); ?>">Terkirim<span id="count_request"></span></a></li>
                             <li class="<?php echo e((request()->is('proposal_revision*')) ? 'active' : ''); ?>"><a class="menu-item" href="<?php echo e(url('proposal_revision')); ?>">Tidak Lengkap<span id="count_fixing"></span></a></li>
                             <li class="<?php echo e((request()->is('proposal_process*')) ? 'active' : ''); ?>"><a class="menu-item" href="<?php echo e(url('proposal_process')); ?>">Diproses<span id="count_process"></span></a></li>
-                            <li  class="<?php echo e((request()->is('proposal_done*')) ? 'active' : ''); ?>"><a class="menu-item" href="<?php echo e(url('proposal_done')); ?>">Selesai</a></li>
+                            <li  class="<?php echo e((request()->is('proposal_done*')) ? 'active' : ''); ?>"><a class="menu-item" href="<?php echo e(url('proposal_done')); ?>">Selesai<span id="count_done"></span></a></li>
                         </ul>
                     </li>
                     <li class=" nav-item <?php echo e((request()->is('proposal*')) ? 'active' : ''); ?>"><a href="#"><i class="ft-list"></i><span class="menu-title" data-i18n="">Harmonisasi</span><span id="count2_1"></span></a>

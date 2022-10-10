@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Proposal;   //nama model
 use App\Models\Harmonization;   //nama model
+use App\Models\History;   //nama model
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB; //untuk membuat query di controller
@@ -216,7 +217,9 @@ class HarmonizationController extends Controller
    {
         $title = "Harmonisasi";
         $proposal = Proposal::where('id',$harmonization->id)->first();
-        $view=view('admin.harmonization.detail', compact('title','harmonization','proposal'));
+        $history_taker = History::whereNotNull('taker_name')->where('id',$harmonization->id)->get();
+        $history_depositor = History::whereNotNull('depositor_name')->where('id',$harmonization->id)->get();
+        $view=view('admin.harmonization.detail', compact('title','harmonization','proposal','history_taker','history_depositor'));
         $view=$view->render();
         return $view;
    }
@@ -245,7 +248,13 @@ class HarmonizationController extends Controller
         $harmonization->fill($request->all());
         $harmonization->status = 'ambil berkas fisik';
         $harmonization->save();
-       
+
+        $history = new History();
+        $history->fill($request->all());
+        $history->id = $harmonization->id;
+        $history->office_id = $harmonization->office_id;
+        $history->save();
+        
         return redirect('/harmonization_opd/')->with('status', 'Berkas Fisik Di ambil');
    }
 
@@ -274,6 +283,12 @@ class HarmonizationController extends Controller
          $harmonization->status = 'setor berkas fisik';
          $harmonization->save();
         
+         $history = new History();
+         $history->fill($request->all());
+         $history->id = $harmonization->id;
+         $history->office_id = $harmonization->office_id;
+         $history->save();
+         
          return redirect('/harmonization_verification/')->with('status', 'Berkas Fisik Di setor');
     }
  

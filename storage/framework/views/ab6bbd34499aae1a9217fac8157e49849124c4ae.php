@@ -187,9 +187,9 @@
                                                     </div>
                                                     <div class="modal-body">
                                                         <div class="custom-file">
-                                                            <i style="font-size:10px">Ukuran File Tidak Boleh Lebih Dari 50 mb (doc,xls)</i>
                                                             <input type="file" name="upload_fix" class="custom-file-input" required>
                                                             <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                                            <i style="font-size:10px">Ukuran File Tidak Boleh Lebih Dari 50 mb (doc,xls)</i>
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">
@@ -328,6 +328,7 @@
                                                         <div class="custom-file">
                                                             <input type="file" name="upload_fix" class="custom-file-input" required>
                                                             <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
+                                                            <i style="font-size:10px">Ukuran File Tidak Boleh Lebih Dari 50 mb (doc,xls)</i>
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">

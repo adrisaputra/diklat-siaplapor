@@ -10,7 +10,7 @@
     <meta name="keywords" content="admin template, Chameleon admin template, dashboard template, gradient admin template, responsive admin template, webapp, eCommerce dashboard, analytic dashboard">
     <meta name="author" content="ThemeSelect">
     <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
-    <title>Siap Lapor</title>
+    <title>Selamat Datang di Siprokumda (Sistem Infromasi Produk Hukum Daerah)</title>
     <link rel="apple-touch-icon" href="<?php echo e(asset('/upload/logo/sultra.png')); ?>">
     <link rel="shortcut icon" type="image/x-icon" href="<?php echo e(asset('/upload/logo/sultra.png')); ?>">
     <link href="https://fonts.googleapis.com/css?family=Muli:300,300i,400,400i,600,600i,700,700i%7CComfortaa:300,400,700" rel="stylesheet">

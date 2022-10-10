@@ -109,47 +109,50 @@
         
                                 @endif
 
+                                <hr>
                                 @if($harmonization->taker_name)
                                 
-                                    <p><center style="font-size:20px;"> Data Pengambil Berkas</center></p>
-                                    <div class="form-group row">
-                                        <label class="col-form-label col-sm-3 text-sm-right"> Nama Pengambil Berkas Fisik </label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control" value="{{ $harmonization->taker_name }}" readonly>
-                                        </div>
-                                    </div>
-        
-                                    <div class="form-group row">
-                                        <label class="col-form-label col-sm-3 text-sm-right"> No HP. Pengambil Berkas Fisik </label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control" value="{{ $harmonization->taker_phone }}" readonly>
-                                        </div>
-                                    </div>
-        
-                                    <div class="form-group row">
-                                        <label class="col-form-label col-sm-3 text-sm-right"> Tanggal Ambil Berkas Fisik </label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control" value="{{ date('d-m-Y', strtotime($harmonization->taker_date)) }}" readonly>
-                                        </div>
-                                    </div>
-        
+                                    <p><center style="font-size:20px;"> Data Riwayat Pengambil Berkas</center></p>
+
+                                        <table class="table">
+                                            <thead class="bg-info white">
+                                                <tr>
+											<th>Nama Pengambil Berkas Fisik</th>
+											<th>No HP. Pengambil Berkas Fisik</th>
+											<th>Tanggal Ambil Berkas Fisik</th>
+                                            <tbody>
+                                            @foreach($history_taker as $v)
+                                            <tr>
+                                                <td>{{ $v->taker_name }}</td>
+                                                <td>{{ $v->taker_phone }}</td>
+                                                <td>{{ date('d-m-Y', strtotime($v->taker_date)) }}</td>
+                                            </tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
+
                                 @endif
+                                
+                                <hr>
                                 @if($harmonization->depositor_name)
                                 
-                                    <p><center style="font-size:20px;"> Data Penyetor Berkas</center></p>
-                                    <div class="form-group row">
-                                        <label class="col-form-label col-sm-3 text-sm-right"> Nama Penyetor Berkas Fisik </label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control" value="{{ $harmonization->depositor_name }}" readonly>
-                                        </div>
-                                    </div>
-        
-                                    <div class="form-group row">
-                                        <label class="col-form-label col-sm-3 text-sm-right"> Tanggal Setor Berkas Fisik </label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control" value="{{ $harmonization->depositor_date }}" readonly>
-                                        </div>
-                                    </div>
+                                    <p><center style="font-size:20px;"> Data Riwayat Penyetor Berkas</center></p>
+                                    
+                                        <table class="table">
+                                            <thead class="bg-info white">
+                                                <tr>
+                                            <th>Nama Penyetor Berkas Fisik</th>
+                                            <th>Tanggal Setor Berkas Fisik</th>
+                                            <tbody>
+                                            @foreach($history_depositor as $v)
+                                            <tr>
+                                                <td>{{ $v->depositor_name }}</td>
+                                                <td>{{ date('d-m-Y', strtotime($v->depositor_date)) }}</td>
+                                            </tr>
+                                            @endforeach
+                                            </tbody>
+                                        </table>
+
         
                                 @endif
 								<br><br>
