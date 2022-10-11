@@ -31,133 +31,164 @@
                                 <div class="card-header">
                                     <h4 class="card-title">Detail <?php echo e(__($title)); ?></h4>
                                 </div>
-                                <p><center style="font-size:20px;"> Data Usulan</center></p>
+                                <p><center style="font-size:20px;"> LAMBAR KONTROL</center></p>
                                 <div class="form-group row">
-									<label class="col-form-label col-sm-3 text-sm-right"> Tanggal Usul </label>
+									<label class="col-form-label col-sm-3 text-sm-right"> OPD/BIRO </label>
+									<div class="col-sm-9">
+										<input type="text" class="form-control" value="<?php echo e($proposal->office->name); ?>" readonly>
+									</div>
+								</div>
+	
+                                <div class="form-group row">
+									<label class="col-form-label col-sm-3 text-sm-right"> NO. AGENDA REGISTRASI </label>
+									<div class="col-sm-9">
+										<input type="text" class="form-control" value="" readonly>
+									</div>
+								</div>
+	
+                                <div class="form-group row">
+									<label class="col-form-label col-sm-3 text-sm-right"> TANGGAL MASUK SK </label>
 									<div class="col-sm-9">
 										<input type="text" class="form-control" value="<?php echo e(date('d-m-Y', strtotime($proposal->date))); ?>" readonly>
 									</div>
 								</div>
 	
                                 <div class="form-group row">
-									<label class="col-form-label col-sm-3 text-sm-right"> Jenis Usul</label>
-									<div class="col-sm-9">
-										<input type="text" class="form-control" value="<?php echo e($proposal->type); ?>" readonly>
-									</div>
-								</div>
-
-                                <div class="form-group row">
-									<label class="col-form-label col-sm-3 text-sm-right"> Tentang</label>
+									<label class="col-form-label col-sm-3 text-sm-right"> TENTANG</label>
 									<div class="col-sm-9">
 										<input type="text" class="form-control" value="<?php echo e($proposal->about); ?>" readonly>
 									</div>
 								</div>
 
-                                <div class="form-group row">
-									<label class="col-form-label col-sm-3 text-sm-right"> Surat Pengantar</label>
-									<div class="col-sm-9">
-                                        <a href="<?php echo e(asset('upload/cover_letter/'.$proposal->cover_letter )); ?>" target="blank" class="btn btn-sm btn-flat btn-info">Lihat File</a>
-									</div>
-								</div>
-
-                                <div class="form-group row">
-									<label class="col-form-label col-sm-3 text-sm-right"> Telaah Staf</label>
-									<div class="col-sm-9">
-                                        <a href="<?php echo e(asset('upload/review_staff/'.$proposal->review_staff )); ?>" target="blank" class="btn btn-sm btn-flat btn-info">Lihat File</a>
-									</div>
-								</div>
-
-                                <div class="form-group row">
-									<label class="col-form-label col-sm-3 text-sm-right"> Nota Dinas</label>
-									<div class="col-sm-9">
-                                        <a href="<?php echo e(asset('upload/official_memo/'.$proposal->official_memo )); ?>" target="blank" class="btn btn-sm btn-flat btn-info">Lihat File</a>
-									</div>
-								</div>
-
-                                <div class="form-group row">
-									<label class="col-form-label col-sm-3 text-sm-right"> Konsep Persetujuan Naskah Dinas</label>
-									<div class="col-sm-9">
-                                        <a href="<?php echo e(asset('upload/approval_concept/'.$proposal->approval_concept )); ?>" target="blank" class="btn btn-sm btn-flat btn-info">Lihat File</a>
-									</div>
-								</div>
-
-                                <div class="form-group row">
-									<label class="col-form-label col-sm-3 text-sm-right"> Draf SK/Pergub/Perda</label>
-									<div class="col-sm-9">
-                                        <a href="<?php echo e(asset('upload/draft/'.$proposal->draft )); ?>" target="blank" class="btn btn-sm btn-flat btn-info">Lihat File</a>
-									</div>
-								</div>
+                                <table class="table">
+                                    <thead class="bg-info white">
+                                        <tr>
+                                            <th>NO</th>
+                                            <th>KELENGKAPAN PELAYANAN</th>
+                                            <th>ADA</th>
+                                            <th>TIDAK</th>
+                                            <th>KETERANGAN</th>
+                                        <tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td> Surat Pengantar</td>
+                                            <td><a href="<?php echo e(asset('upload/cover_letter/'.$proposal->cover_letter )); ?>" target="blank" class="btn btn-sm btn-flat btn-info">Lihat File</a></td>
+                                            <td>
+                                                <?php if($proposal->status1=="Tidak Lengkap"): ?>
+                                                    Tidak Lengkap
+                                                <?php endif; ?>
+                                            </td>
+                                            <td>
+                                                <?php if($proposal->status1=="Tidak Lengkap"): ?>
+                                                    $proposal->desc1
+                                                <?php endif; ?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Telaah Staf</td>
+                                            <td><a href="<?php echo e(asset('upload/review_staff/'.$proposal->review_staff )); ?>" target="blank" class="btn btn-sm btn-flat btn-info">Lihat File</a></td>
+                                            <td>
+                                                <?php if($proposal->status2=="Tidak Lengkap"): ?>
+                                                    Tidak Lengkap
+                                                <?php endif; ?>
+                                            </td>
+                                            <td>
+                                                <?php if($proposal->status2=="Tidak Lengkap"): ?>
+                                                    $proposal->desc2
+                                                <?php endif; ?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>Nota Dinas</td>
+                                            <td><a href="<?php echo e(asset('upload/official_memo/'.$proposal->official_memo )); ?>" target="blank" class="btn btn-sm btn-flat btn-info">Lihat File</a></td>
+                                            <td>
+                                                <?php if($proposal->status3=="Tidak Lengkap"): ?>
+                                                    Tidak Lengkap
+                                                <?php endif; ?>
+                                            </td>
+                                            <td>
+                                                <?php if($proposal->status3=="Tidak Lengkap"): ?>
+                                                    $proposal->desc3
+                                                <?php endif; ?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>Konsep Persetujuan Naskah Dinas</td>
+                                            <td><a href="<?php echo e(asset('upload/approval_concept/'.$proposal->approval_concept )); ?>" target="blank" class="btn btn-sm btn-flat btn-info">Lihat File</a></td>
+                                            <td>
+                                                <?php if($proposal->status4=="Tidak Lengkap"): ?>
+                                                    Tidak Lengkap
+                                                <?php endif; ?>
+                                            </td>
+                                            <td>
+                                                <?php if($proposal->status4=="Tidak Lengkap"): ?>
+                                                    $proposal->desc4
+                                                <?php endif; ?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>Draft SK/Pergub/Perda</td>
+                                            <td><a href="<?php echo e(asset('upload/draft/'.$proposal->draft )); ?>" target="blank" class="btn btn-sm btn-flat btn-info">Lihat File</a></td>
+                                            <td>
+                                                <?php if($proposal->status5=="Tidak Lengkap"): ?>
+                                                    Tidak Lengkap
+                                                <?php endif; ?>
+                                            </td>
+                                            <td>
+                                                <?php if($proposal->status5=="Tidak Lengkap"): ?>
+                                                    $proposal->desc5
+                                                <?php endif; ?>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
 
                                 <hr>
                                 
-                                <?php if($harmonization->upload_fix): ?>
                                 
-                                    <p><center style="font-size:20px;"> Data Perbaikan</center></p>
-                                    <div class="form-group row">
-                                        <label class="col-form-label col-sm-3 text-sm-right"> File Perbaikan</label>
-                                        <div class="col-sm-9">
-                                            <a href="<?php echo e(asset('upload/upload_fix/'.$harmonization->upload_fix )); ?>" target="blank" class="btn btn-sm btn-flat btn-info">Lihat File</a>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="form-group row">
-                                        <label class="col-form-label col-sm-3 text-sm-right"> Tanggal Upload </label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control" value="<?php echo e(date('d-m-Y', strtotime($harmonization->upload_date))); ?>" readonly>
-                                        </div>
-                                    </div>
-        
-                                <?php endif; ?>
 
                                 <hr>
-                                <?php if($harmonization->taker_name): ?>
                                 
-                                    <p><center style="font-size:20px;"> Data Riwayat Pengambil Berkas</center></p>
+                                    <p><center style="font-size:20px;"> RIWAYAT HARMONISASI</center></p>
 
                                         <table class="table">
                                             <thead class="bg-info white">
                                                 <tr>
-											<th>Nama Pengambil Berkas Fisik</th>
-											<th>No HP. Pengambil Berkas Fisik</th>
-											<th>Tanggal Ambil Berkas Fisik</th>
+                                                    <th>NAMA/NOMOR HP</th>
+                                                    <th>TANGGAL PENGAMBILAN</th>
+                                                    <th>TANGGAL PENGEMBALIAN</th>
+                                                </tr>
+                                            </thead>
                                             <tbody>
-                                            <?php $__currentLoopData = $history_taker; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $v): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <?php $__currentLoopData = $history; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $v): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <tr>
-                                                <td><?php echo e($v->taker_name); ?></td>
-                                                <td><?php echo e($v->taker_phone); ?></td>
-                                                <td><?php echo e(date('d-m-Y', strtotime($v->taker_date))); ?></td>
+                                                <td>
+                                                    <?php if($v->taker_name): ?>
+                                                        <?php echo e($v->taker_name); ?>
+
+                                                    <?php else: ?>
+                                                        <?php echo e($v->depositor_name); ?>
+
+                                                    <?php endif; ?>
+                                                </td>
+                                                <td><?php if($v->taker_date!=NULL): ?> <?php echo e(date('d-m-Y', strtotime($v->taker_date))); ?> <?php endif; ?></td>
+                                                <td><?php if($v->depositor_date!=NULL): ?> <?php echo e(date('d-m-Y', strtotime($v->depositor_date))); ?> <?php endif; ?></td>
                                             </tr>
                                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                             </tbody>
                                         </table>
 
-                                <?php endif; ?>
                                 
-                                <hr>
-                                <?php if($harmonization->depositor_name): ?>
-                                
-                                    <p><center style="font-size:20px;"> Data Riwayat Penyetor Berkas</center></p>
-                                    
-                                        <table class="table">
-                                            <thead class="bg-info white">
-                                                <tr>
-                                            <th>Nama Penyetor Berkas Fisik</th>
-                                            <th>Tanggal Setor Berkas Fisik</th>
-                                            <tbody>
-                                            <?php $__currentLoopData = $history_depositor; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $v): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                            <tr>
-                                                <td><?php echo e($v->depositor_name); ?></td>
-                                                <td><?php echo e(date('d-m-Y', strtotime($v->depositor_date))); ?></td>
-                                            </tr>
-                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                            </tbody>
-                                        </table>
-
-        
-                                <?php endif; ?>
 								<br><br>
 								<div class="form-group row">
 									<div class="col-sm-12 ml-sm-auto">
+										<a href="<?php echo e(url('/'.Request::segment(1).'/print/'.$proposal->id)); ?>" class="btn btn-primary">Cetak</a>
 										<a href="<?php echo e(url('/'.Request::segment(1))); ?>" class="btn btn-warning">Kembali</a>
 									</div>
 								</div>

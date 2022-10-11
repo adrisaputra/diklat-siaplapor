@@ -71,12 +71,37 @@ CREATE TABLE IF NOT EXISTS `harmonizations` (
   CONSTRAINT `FK_harmonizations_proposals` FOREIGN KEY (`id`) REFERENCES `proposals` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Membuang data untuk tabel db_diklat_siap_lapor.harmonizations: ~0 rows (lebih kurang)
+-- Membuang data untuk tabel db_diklat_siap_lapor.harmonizations: ~1 rows (lebih kurang)
 /*!40000 ALTER TABLE `harmonizations` DISABLE KEYS */;
 INSERT INTO `harmonizations` (`id`, `office_id`, `upload_fix`, `upload_date`, `taker_name`, `taker_phone`, `taker_date`, `status`, `depositor_name`, `depositor_date`, `initials1`, `initials2`, `created_at`, `updated_at`) VALUES
-	(2, 1, '1663372129.xlsx', '2022-09-16', 'xxx', '39393', NULL, 'perbaikan', 'ssssasasa', NULL, NULL, NULL, '2022-09-16 23:21:45', '2022-09-17 09:17:33'),
-	(3, 1, '1663458817.xlsx', '2022-09-17', 'dirly', '089908990899', '2022-09-16', 'selesai', 'Aisyah', '2022-09-18', NULL, NULL, '2022-09-17 09:20:11', '2022-09-17 23:57:38');
+	(5, 1, '1665333194.docx', '2022-10-09', 'aco', '08218821', '2022-10-11', 'selesai', 'icha', '2022-10-10', NULL, NULL, '2022-10-09 16:07:58', '2022-10-09 16:33:33');
 /*!40000 ALTER TABLE `harmonizations` ENABLE KEYS */;
+
+-- membuang struktur untuk table db_diklat_siap_lapor.histories
+CREATE TABLE IF NOT EXISTS `histories` (
+  `id` bigint(20) unsigned NOT NULL,
+  `office_id` bigint(20) unsigned NOT NULL,
+  `taker_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `taker_phone` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `taker_date` date DEFAULT NULL,
+  `depositor_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `depositor_date` date DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  KEY `FK_harmonizations_offices` (`office_id`) USING BTREE,
+  KEY `id` (`id`),
+  CONSTRAINT `histories_ibfk_1` FOREIGN KEY (`office_id`) REFERENCES `offices` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `histories_ibfk_2` FOREIGN KEY (`id`) REFERENCES `proposals` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci ROW_FORMAT=DYNAMIC;
+
+-- Membuang data untuk tabel db_diklat_siap_lapor.histories: ~3 rows (lebih kurang)
+/*!40000 ALTER TABLE `histories` DISABLE KEYS */;
+INSERT INTO `histories` (`id`, `office_id`, `taker_name`, `taker_phone`, `taker_date`, `depositor_name`, `depositor_date`, `created_at`, `updated_at`) VALUES
+	(5, 1, 'adri', '082259504093', '2022-10-10', NULL, NULL, '2022-10-09 16:26:01', '2022-10-09 16:26:01'),
+	(5, 1, NULL, NULL, NULL, 'xxxx', '2022-10-10', '2022-10-09 16:31:30', '2022-10-09 16:31:30'),
+	(5, 1, 'aco', '08218821', '2022-10-11', NULL, NULL, '2022-10-09 16:32:33', '2022-10-09 16:32:33'),
+	(5, 1, NULL, NULL, NULL, 'icha', '2022-10-10', '2022-10-09 16:33:27', '2022-10-09 16:33:27');
+/*!40000 ALTER TABLE `histories` ENABLE KEYS */;
 
 -- membuang struktur untuk table db_diklat_siap_lapor.migrations
 CREATE TABLE IF NOT EXISTS `migrations` (
@@ -185,13 +210,12 @@ CREATE TABLE IF NOT EXISTS `proposals` (
   PRIMARY KEY (`id`),
   KEY `FK_proposals_offices` (`office_id`),
   CONSTRAINT `FK_proposals_offices` FOREIGN KEY (`office_id`) REFERENCES `offices` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Membuang data untuk tabel db_diklat_siap_lapor.proposals: ~1 rows (lebih kurang)
+-- Membuang data untuk tabel db_diklat_siap_lapor.proposals: ~0 rows (lebih kurang)
 /*!40000 ALTER TABLE `proposals` DISABLE KEYS */;
 INSERT INTO `proposals` (`id`, `office_id`, `date`, `type`, `about`, `cover_letter`, `status1`, `desc1`, `review_staff`, `status2`, `desc2`, `official_memo`, `status3`, `desc3`, `approval_concept`, `status4`, `desc4`, `draft`, `status5`, `desc5`, `status`, `date_disposition1`, `date_disposition2`, `date_disposition3`, `date_disposition4`, `date_disposition5`, `created_at`, `updated_at`) VALUES
-	(2, 1, '2022-09-17', 'Draft SK', 'usulan draft SK', '1663370505.pdf', 'Lengkap', NULL, '1663370505.pdf', 'Lengkap', NULL, '1663370505.pdf', 'Lengkap', NULL, '1663370505.pdf', 'Lengkap', NULL, '1663370505.xlsx', 'Lengkap', NULL, 'Selesai', '2022-09-17', '2022-09-17', '2022-09-17', '2022-09-17', '2022-09-17', '2022-09-16 23:21:45', '2022-09-16 23:25:48'),
-	(3, 1, '2022-09-17', 'Perda', 'Pengurusan perda', '1663407903.pdf', 'Lengkap', NULL, '1663406411.pdf', 'Lengkap', NULL, '1663406411.pdf', 'Lengkap', NULL, '1663406411.pdf', 'Lengkap', NULL, '1663407574.xlsx', 'Lengkap', NULL, 'Selesai', '2022-09-17', '2022-09-17', '2022-09-17', '2022-09-17', '2022-09-17', '2022-09-17 09:20:11', '2022-09-17 09:48:28');
+	(5, 1, '2022-10-09', 'Draft SK', 'xxxx', '1665331678.pdf', 'Lengkap', NULL, '1665331678.pdf', 'Lengkap', NULL, '1665331678.pdf', 'Lengkap', NULL, '1665331678.pdf', 'Lengkap', NULL, '1665331678.docx', 'Lengkap', NULL, 'Selesai', '2022-10-10', '2022-10-10', '2022-10-10', '2022-10-10', '2022-10-10', '2022-10-09 16:07:58', '2022-10-09 16:08:43');
 /*!40000 ALTER TABLE `proposals` ENABLE KEYS */;
 
 -- membuang struktur untuk table db_diklat_siap_lapor.sessions
@@ -207,12 +231,11 @@ CREATE TABLE IF NOT EXISTS `sessions` (
   KEY `sessions_last_activity_index` (`last_activity`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Membuang data untuk tabel db_diklat_siap_lapor.sessions: ~1 rows (lebih kurang)
+-- Membuang data untuk tabel db_diklat_siap_lapor.sessions: ~4 rows (lebih kurang)
 /*!40000 ALTER TABLE `sessions` DISABLE KEYS */;
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-	('9ewFE8xECN1k0jEJQb6NoSHumctl28KZPrYt74Kw', 8, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiNllHTjNTeVN1TnBqMzFYQzY4YkNUeGZXaFNNc2trOWFZbnNFUllZeiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDg6Imh0dHA6Ly9sb2NhbGhvc3QvZGlrbGF0LXNpYXBsYXBvci9oYXJtb25pemF0aW9ucyI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjg7czoxNzoicGFzc3dvcmRfaGFzaF93ZWIiO3M6NjA6IiQyeSQxMCR3RHNLWDhjcWtCcUVicEVLZnJydFNPSDBDNWxXdzFReS4xb252NGlYN1FmMUM1b1Fyd1RwLiI7fQ==', 1663459526),
-	('robN4pBWTkEt7EasxfjFAm231hm5rLgsOXShTXYm', 6, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoibHpQY2VPUUVnRUlyZEdlM2pNaHV0OW9vYmlJMXVaanJRdVg3STdhbyI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NTE6Imh0dHA6Ly9sb2NhbGhvc3QvZGlrbGF0LXNpYXBsYXBvci9oYXJtb25pemF0aW9uX29wZCI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjY7czoxNzoicGFzc3dvcmRfaGFzaF93ZWIiO3M6NjA6IiQyeSQxMCR1bEdwMnQ2SlBpWDhtTG0wVURnaWZlTFpuY1k2dDYwTlVtd1pFeFNzWndYOG84WXpSZFFKYSI7fQ==', 1663459679),
-	('tnAN073D7CSDbyhOKUMqOsV7XWb2pjAoDekIByEz', 1, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiSW1PTXU1MVJWV1BxSHM5Z1U2c3N4cGZXR3JGTDF4VnNLZXlzdXBiWSI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NDg6Imh0dHA6Ly9sb2NhbGhvc3QvZGlrbGF0LXNpYXBsYXBvci9oYXJtb25pemF0aW9ucyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7czoxNzoicGFzc3dvcmRfaGFzaF93ZWIiO3M6NjA6IiQyeSQxMCRuam1oU1dJRWN5MVE0L0Y1Y2JOT3N1bHZlMTF4M01sUHJEYU1rTjdYWDVZa1NVVDloSUhvNiI7fQ==', 1663459685);
+	('joJl18dHq2jNkowzbihqjotYsK0KZq6hqHEWq4bS', 6, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiT25ETmR1dGduR1V6ZDBheW1IT1JxUFJKOWkycWQ4Z1NmZEQzNHZpVCI7czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6NjE6Imh0dHA6Ly9sb2NhbGhvc3QvZGlrbGF0LXNpYXBsYXBvci9oYXJtb25pemF0aW9uX2RvbmUvZGV0YWlsLzUiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aTo2O3M6MTc6InBhc3N3b3JkX2hhc2hfd2ViIjtzOjYwOiIkMnkkMTAkdWxHcDJ0NkpQaVg4bUxtMFVEZ2lmZUxabmNZNnQ2ME5VbXdaRXhTc1p3WDhvOFl6UmRRSmEiO30=', 1665441449),
+	('YGe1yQ0rkdtCfF5jAJLPwuLaAqKaVCirQVDnG4Ix', NULL, '::1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/105.0.0.0 Safari/537.36', 'YToyOntzOjY6Il90b2tlbiI7czo0MDoib2dRQU5ONHpEamgxbk9NR2s3b21Za2V6cnRLZVpjZHN5NTNZOXM5ciI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1665441357);
 /*!40000 ALTER TABLE `sessions` ENABLE KEYS */;
 
 -- membuang struktur untuk table db_diklat_siap_lapor.users

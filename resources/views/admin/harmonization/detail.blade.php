@@ -31,66 +31,127 @@
                                 <div class="card-header">
                                     <h4 class="card-title">Detail {{ __($title) }}</h4>
                                 </div>
-                                <p><center style="font-size:20px;"> Data Usulan</center></p>
+                                <p><center style="font-size:20px;"> LAMBAR KONTROL</center></p>
                                 <div class="form-group row">
-									<label class="col-form-label col-sm-3 text-sm-right"> Tanggal Usul </label>
+									<label class="col-form-label col-sm-3 text-sm-right"> OPD/BIRO </label>
+									<div class="col-sm-9">
+										<input type="text" class="form-control" value="{{ $proposal->office->name }}" readonly>
+									</div>
+								</div>
+	
+                                <div class="form-group row">
+									<label class="col-form-label col-sm-3 text-sm-right"> NO. AGENDA REGISTRASI </label>
+									<div class="col-sm-9">
+										<input type="text" class="form-control" value="" readonly>
+									</div>
+								</div>
+	
+                                <div class="form-group row">
+									<label class="col-form-label col-sm-3 text-sm-right"> TANGGAL MASUK SK </label>
 									<div class="col-sm-9">
 										<input type="text" class="form-control" value="{{ date('d-m-Y', strtotime($proposal->date)) }}" readonly>
 									</div>
 								</div>
 	
                                 <div class="form-group row">
-									<label class="col-form-label col-sm-3 text-sm-right"> Jenis Usul</label>
-									<div class="col-sm-9">
-										<input type="text" class="form-control" value="{{ $proposal->type }}" readonly>
-									</div>
-								</div>
-
-                                <div class="form-group row">
-									<label class="col-form-label col-sm-3 text-sm-right"> Tentang</label>
+									<label class="col-form-label col-sm-3 text-sm-right"> TENTANG</label>
 									<div class="col-sm-9">
 										<input type="text" class="form-control" value="{{ $proposal->about }}" readonly>
 									</div>
 								</div>
 
-                                <div class="form-group row">
-									<label class="col-form-label col-sm-3 text-sm-right"> Surat Pengantar</label>
-									<div class="col-sm-9">
-                                        <a href="{{ asset('upload/cover_letter/'.$proposal->cover_letter ) }}" target="blank" class="btn btn-sm btn-flat btn-info">Lihat File</a>
-									</div>
-								</div>
-
-                                <div class="form-group row">
-									<label class="col-form-label col-sm-3 text-sm-right"> Telaah Staf</label>
-									<div class="col-sm-9">
-                                        <a href="{{ asset('upload/review_staff/'.$proposal->review_staff ) }}" target="blank" class="btn btn-sm btn-flat btn-info">Lihat File</a>
-									</div>
-								</div>
-
-                                <div class="form-group row">
-									<label class="col-form-label col-sm-3 text-sm-right"> Nota Dinas</label>
-									<div class="col-sm-9">
-                                        <a href="{{ asset('upload/official_memo/'.$proposal->official_memo ) }}" target="blank" class="btn btn-sm btn-flat btn-info">Lihat File</a>
-									</div>
-								</div>
-
-                                <div class="form-group row">
-									<label class="col-form-label col-sm-3 text-sm-right"> Konsep Persetujuan Naskah Dinas</label>
-									<div class="col-sm-9">
-                                        <a href="{{ asset('upload/approval_concept/'.$proposal->approval_concept ) }}" target="blank" class="btn btn-sm btn-flat btn-info">Lihat File</a>
-									</div>
-								</div>
-
-                                <div class="form-group row">
-									<label class="col-form-label col-sm-3 text-sm-right"> Draf SK/Pergub/Perda</label>
-									<div class="col-sm-9">
-                                        <a href="{{ asset('upload/draft/'.$proposal->draft ) }}" target="blank" class="btn btn-sm btn-flat btn-info">Lihat File</a>
-									</div>
-								</div>
+                                <table class="table">
+                                    <thead class="bg-info white">
+                                        <tr>
+                                            <th>NO</th>
+                                            <th>KELENGKAPAN PELAYANAN</th>
+                                            <th>ADA</th>
+                                            <th>TIDAK</th>
+                                            <th>KETERANGAN</th>
+                                        <tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td> Surat Pengantar</td>
+                                            <td><a href="{{ asset('upload/cover_letter/'.$proposal->cover_letter ) }}" target="blank" class="btn btn-sm btn-flat btn-info">Lihat File</a></td>
+                                            <td>
+                                                @if($proposal->status1=="Tidak Lengkap")
+                                                    Tidak Lengkap
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if($proposal->status1=="Tidak Lengkap")
+                                                    $proposal->desc1
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>Telaah Staf</td>
+                                            <td><a href="{{ asset('upload/review_staff/'.$proposal->review_staff ) }}" target="blank" class="btn btn-sm btn-flat btn-info">Lihat File</a></td>
+                                            <td>
+                                                @if($proposal->status2=="Tidak Lengkap")
+                                                    Tidak Lengkap
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if($proposal->status2=="Tidak Lengkap")
+                                                    $proposal->desc2
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>Nota Dinas</td>
+                                            <td><a href="{{ asset('upload/official_memo/'.$proposal->official_memo ) }}" target="blank" class="btn btn-sm btn-flat btn-info">Lihat File</a></td>
+                                            <td>
+                                                @if($proposal->status3=="Tidak Lengkap")
+                                                    Tidak Lengkap
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if($proposal->status3=="Tidak Lengkap")
+                                                    $proposal->desc3
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>Konsep Persetujuan Naskah Dinas</td>
+                                            <td><a href="{{ asset('upload/approval_concept/'.$proposal->approval_concept ) }}" target="blank" class="btn btn-sm btn-flat btn-info">Lihat File</a></td>
+                                            <td>
+                                                @if($proposal->status4=="Tidak Lengkap")
+                                                    Tidak Lengkap
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if($proposal->status4=="Tidak Lengkap")
+                                                    $proposal->desc4
+                                                @endif
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>Draft SK/Pergub/Perda</td>
+                                            <td><a href="{{ asset('upload/draft/'.$proposal->draft ) }}" target="blank" class="btn btn-sm btn-flat btn-info">Lihat File</a></td>
+                                            <td>
+                                                @if($proposal->status5=="Tidak Lengkap")
+                                                    Tidak Lengkap
+                                                @endif
+                                            </td>
+                                            <td>
+                                                @if($proposal->status5=="Tidak Lengkap")
+                                                    $proposal->desc5
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
 
                                 <hr>
                                 
-                                @if($harmonization->upload_fix)
+                                {{-- @if($harmonization->upload_fix)
                                 
                                     <p><center style="font-size:20px;"> Data Perbaikan</center></p>
                                     <div class="form-group row">
@@ -107,57 +168,42 @@
                                         </div>
                                     </div>
         
-                                @endif
+                                @endif --}}
 
                                 <hr>
-                                @if($harmonization->taker_name)
                                 
-                                    <p><center style="font-size:20px;"> Data Riwayat Pengambil Berkas</center></p>
+                                    <p><center style="font-size:20px;"> RIWAYAT HARMONISASI</center></p>
 
                                         <table class="table">
                                             <thead class="bg-info white">
                                                 <tr>
-											<th>Nama Pengambil Berkas Fisik</th>
-											<th>No HP. Pengambil Berkas Fisik</th>
-											<th>Tanggal Ambil Berkas Fisik</th>
+                                                    <th>NAMA/NOMOR HP</th>
+                                                    <th>TANGGAL PENGAMBILAN</th>
+                                                    <th>TANGGAL PENGEMBALIAN</th>
+                                                </tr>
+                                            </thead>
                                             <tbody>
-                                            @foreach($history_taker as $v)
+                                            @foreach($history as $v)
                                             <tr>
-                                                <td>{{ $v->taker_name }}</td>
-                                                <td>{{ $v->taker_phone }}</td>
-                                                <td>{{ date('d-m-Y', strtotime($v->taker_date)) }}</td>
+                                                <td>
+                                                    @if($v->taker_name)
+                                                        {{ $v->taker_name }}
+                                                    @else
+                                                        {{ $v->depositor_name }}
+                                                    @endif
+                                                </td>
+                                                <td>@if($v->taker_date!=NULL) {{ date('d-m-Y', strtotime($v->taker_date)) }} @endif</td>
+                                                <td>@if($v->depositor_date!=NULL) {{ date('d-m-Y', strtotime($v->depositor_date)) }} @endif</td>
                                             </tr>
                                             @endforeach
                                             </tbody>
                                         </table>
 
-                                @endif
                                 
-                                <hr>
-                                @if($harmonization->depositor_name)
-                                
-                                    <p><center style="font-size:20px;"> Data Riwayat Penyetor Berkas</center></p>
-                                    
-                                        <table class="table">
-                                            <thead class="bg-info white">
-                                                <tr>
-                                            <th>Nama Penyetor Berkas Fisik</th>
-                                            <th>Tanggal Setor Berkas Fisik</th>
-                                            <tbody>
-                                            @foreach($history_depositor as $v)
-                                            <tr>
-                                                <td>{{ $v->depositor_name }}</td>
-                                                <td>{{ date('d-m-Y', strtotime($v->depositor_date)) }}</td>
-                                            </tr>
-                                            @endforeach
-                                            </tbody>
-                                        </table>
-
-        
-                                @endif
 								<br><br>
 								<div class="form-group row">
 									<div class="col-sm-12 ml-sm-auto">
+										<a href="{{ url('/'.Request::segment(1).'/print/'.$proposal->id) }}" class="btn btn-primary">Cetak</a>
 										<a href="{{ url('/'.Request::segment(1)) }}" class="btn btn-warning">Kembali</a>
 									</div>
 								</div>
