@@ -126,6 +126,7 @@
                             </li>
                         </ul>
                     </li>
+                    <li class=" nav-item {{ (request()->is('recap*')) ? 'active' : '' }}"><a href="{{ url('recap') }}"><i class="ft-home"></i><span class="menu-title" data-i18n="">Rekap</span></a></li>
                 @endif
                 @if(Auth::user()->group == 1)
                     <li class=" nav-item {{ (request()->is('office*')) ? 'active' : '' }}"><a href="{{ url('office') }}"><i class="la la-building"></i><span class="menu-title" data-i18n="">OPD</span></a></li>

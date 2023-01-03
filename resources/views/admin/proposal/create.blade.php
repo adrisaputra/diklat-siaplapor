@@ -48,13 +48,15 @@
                                     <div class="col-sm-9">
                                         <select class="select2 form-control @if ($errors->has('type')) is-invalid @endif " id="default-select" name="type">
                                             <option value="">- Pilih Jenis Usul -</option>
-                                            <option value="1" @if(old('type')=="Draft SK") selected @endif>Draft SK</option>
-                                            <option value="2" @if(old('type')=="Pergub") selected @endif>Pergub</option>
-                                            <option value="3" @if(old('type')=="Perda") selected @endif>Perda</option>
-                                            <option value="3" @if(old('type')=="MOU") selected @endif>MOU</option>
-                                            <option value="3" @if(old('type')=="NPHD") selected @endif>NPHD</option>
-                                            <option value="3" @if(old('type')=="Nota Kesepahaman") selected @endif>Nota Kesepahaman</option>
-                                            <option value="3" @if(old('type')=="Lainnya") selected @endif>Lainnya</option>
+                                            <option value="Draft SK" @if(old('type')=="Draft SK") selected @endif>Draft SK</option>
+                                            <option value="Pergub" @if(old('type')=="Pergub") selected @endif>Pergub</option>
+                                            <option value="Perda" @if(old('type')=="Perda") selected @endif>Perda</option>
+                                            <option value="MOU" @if(old('type')=="MOU") selected @endif>MOU</option>
+                                            <option value="NPHD" @if(old('type')=="NPHD") selected @endif>NPHD</option>
+                                            <option value="Nota Kesepahaman" @if(old('type')=="Nota Kesepahaman") selected @endif>Nota Kesepahaman</option>
+                                            <option value="Surat Edaran Gubernur" @if(old('type')=="Surat Edaran Gubernur") selected @endif>Surat Edaran Gubernur</option>
+                                            <option value="Instruksi Gubernur" @if(old('type')=="Instruksi Gubernur") selected @endif>Instruksi Gubernur</option>
+                                            <option value="Lainnya" @if(old('type')=="Lainnya") selected @endif>Lainnya</option>
                                         </select>
                                         @if ($errors->has('type')) <label id="validation-email-error" class="error jquery-validation-error small form-text invalid-feedback" for="validation-email">{{ $errors->first('type') }}</label>@endif
                                     </div>
@@ -63,8 +65,24 @@
                                 <div class="form-group row">
                                     <label class="col-form-label col-sm-3 text-sm-right"> Tentang <span class="required" style="color: #dd4b39;">*</span> </label>
                                     <div class="col-sm-9">
-                                        <textarea class="form-control @if ($errors->has('type')) is-invalid @endif " name="about" id="basicTextarea" rows="3"></textarea>
+                                        <textarea class="form-control @if ($errors->has('about')) is-invalid @endif " name="about" id="basicTextarea" rows="3"></textarea>
                                         @if ($errors->has('about')) <label id="validation-email-error" class="error jquery-validation-error small form-text invalid-feedback" for="validation-email">{{ $errors->first('about') }}</label>@endif
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-form-label col-sm-3 text-sm-right"> Penanggung Jawab <span class="required" style="color: #dd4b39;">*</span> </label>
+                                    <div class="col-sm-9">
+                                        <input type="text" name="responsible_person" class="form-control @if ($errors->has('responsible_person')) is-invalid @endif " value="{{ old('responsible_person') }}">
+                                        @if ($errors->has('responsible_person')) <label id="validation-email-error" class="error jquery-validation-error small form-text invalid-feedback" for="validation-email">{{ $errors->first('responsible_person') }}</label>@endif
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-form-label col-sm-3 text-sm-right"> No. WA <span class="required" style="color: #dd4b39;">*</span> </label>
+                                    <div class="col-sm-9">
+                                        <input type="text" name="whatsapp" class="form-control @if ($errors->has('whatsapp')) is-invalid @endif " value="{{ old('whatsapp') }}">
+                                        @if ($errors->has('whatsapp')) <label id="validation-email-error" class="error jquery-validation-error small form-text invalid-feedback" for="validation-email">{{ $errors->first('whatsapp') }}</label>@endif
                                     </div>
                                 </div>
 

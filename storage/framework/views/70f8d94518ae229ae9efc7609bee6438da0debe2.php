@@ -48,13 +48,15 @@
                                     <div class="col-sm-9">
                                         <select class="select2 form-control <?php if($errors->has('type')): ?> is-invalid <?php endif; ?> " id="default-select" name="type">
                                             <option value="">- Pilih Jenis Usul -</option>
-                                            <option value="1" <?php if($proposal->type=="Draft SK"): ?> selected <?php endif; ?>>Draft SK</option>
-                                            <option value="2" <?php if($proposal->type=="Pergub"): ?> selected <?php endif; ?>>Pergub</option>
-                                            <option value="3" <?php if($proposal->type=="Perda"): ?> selected <?php endif; ?>>Perda</option>
-                                            <option value="3" <?php if($proposal->type=="MOU"): ?> selected <?php endif; ?>>MOU</option>
-                                            <option value="3" <?php if($proposal->type=="NPHD"): ?> selected <?php endif; ?>>NPHD</option>
-                                            <option value="3" <?php if($proposal->type=="Nota Kesepahaman"): ?> selected <?php endif; ?>>Nota Kesepahaman</option>
-                                            <option value="3" <?php if($proposal->type=="Lainnya"): ?> selected <?php endif; ?>>Lainnya</option>
+                                            <option value="Draft SK" <?php if($proposal->type=="Draft SK"): ?> selected <?php endif; ?>>Draft SK</option>
+                                            <option value="Pergub" <?php if($proposal->type=="Pergub"): ?> selected <?php endif; ?>>Pergub</option>
+                                            <option value="Perda" <?php if($proposal->type=="Perda"): ?> selected <?php endif; ?>>Perda</option>
+                                            <option value="MOU" <?php if($proposal->type=="MOU"): ?> selected <?php endif; ?>>MOU</option>
+                                            <option value="NPHD" <?php if($proposal->type=="NPHD"): ?> selected <?php endif; ?>>NPHD</option>
+                                            <option value="Nota Kesepahaman" <?php if($proposal->type=="Nota Kesepahaman"): ?> selected <?php endif; ?>>Nota Kesepahaman</option>
+                                            <option value="Surat Edaran Gubernur" <?php if($proposal->type=="Surat Edaran Gubernur"): ?> selected <?php endif; ?>>Surat Edaran Gubernur</option>
+                                            <option value="Instruksi Gubernur" <?php if($proposal->type=="Instruksi Gubernur"): ?> selected <?php endif; ?>>Instruksi Gubernur</option>
+                                            <option value="Lainnya" <?php if($proposal->type=="Lainnya"): ?> selected <?php endif; ?>>Lainnya</option>
                                         </select>
                                         <?php if($errors->has('type')): ?> <label id="validation-email-error" class="error jquery-validation-error small form-text invalid-feedback" for="validation-email"><?php echo e($errors->first('type')); ?></label><?php endif; ?>
                                     </div>
@@ -65,6 +67,22 @@
                                     <div class="col-sm-9">
                                         <textarea class="form-control <?php if($errors->has('type')): ?> is-invalid <?php endif; ?> " name="about" id="basicTextarea" rows="3"><?php echo e($proposal->about); ?></textarea>
                                         <?php if($errors->has('about')): ?> <label id="validation-email-error" class="error jquery-validation-error small form-text invalid-feedback" for="validation-email"><?php echo e($errors->first('about')); ?></label><?php endif; ?>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-form-label col-sm-3 text-sm-right"> Penanggung Jawab <span class="required" style="color: #dd4b39;">*</span> </label>
+                                    <div class="col-sm-9">
+                                        <input type="text" name="responsible_person" class="form-control <?php if($errors->has('responsible_person')): ?> is-invalid <?php endif; ?> " value="<?php echo e($proposal->responsible_person); ?>">
+                                        <?php if($errors->has('responsible_person')): ?> <label id="validation-email-error" class="error jquery-validation-error small form-text invalid-feedback" for="validation-email"><?php echo e($errors->first('responsible_person')); ?></label><?php endif; ?>
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="col-form-label col-sm-3 text-sm-right"> No. WA <span class="required" style="color: #dd4b39;">*</span> </label>
+                                    <div class="col-sm-9">
+                                        <input type="text" name="whatsapp" class="form-control <?php if($errors->has('whatsapp')): ?> is-invalid <?php endif; ?> " value="<?php echo e($proposal->whatsapp); ?>">
+                                        <?php if($errors->has('whatsapp')): ?> <label id="validation-email-error" class="error jquery-validation-error small form-text invalid-feedback" for="validation-email"><?php echo e($errors->first('whatsapp')); ?></label><?php endif; ?>
                                     </div>
                                 </div>
 

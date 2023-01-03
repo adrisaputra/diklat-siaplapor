@@ -19,7 +19,10 @@ class Harmonization extends Model
         'depositor_name',
         'depositor_date',
         'initials1',
-        'initials2'
+        'initials2',
+        'signature',
+        'receiver',
+        'receiver_date'
     ];
 
     public function office()

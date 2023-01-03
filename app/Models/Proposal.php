@@ -13,6 +13,8 @@ class Proposal extends Model
         'date',
         'type',
         'about',
+        'responsible_person',
+        'whatsapp',
         'cover_letter',
         'status1',
         'desc1',

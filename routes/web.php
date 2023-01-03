@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AgendaController;
 use App\Http\Controllers\ProposalController;
 use App\Http\Controllers\HarmonizationController;
+use App\Http\Controllers\RecapController;
 use App\Http\Controllers\OfficeController;
 use App\Http\Controllers\UserController;
 
@@ -136,6 +137,9 @@ Route::get('/harmonization_done/search', [HarmonizationController::class, 'searc
 Route::get('/harmonization_done/detail/{harmonization}', [HarmonizationController::class, 'detail']);
 Route::get('/harmonization_done/print/{proposal}', [HarmonizationController::class, 'print']);
 
+Route::get('/recap', [RecapController::class, 'index']);
+Route::get('/recap/search', [RecapController::class, 'search']);
+Route::get('/recap/print', [RecapController::class, 'print']);
 ## OPD
 Route::get('/office', [OfficeController::class, 'index']);
 Route::get('/office/search', [OfficeController::class, 'search']);

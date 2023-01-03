@@ -126,6 +126,7 @@
                             </li>
                         </ul>
                     </li>
+                    <li class=" nav-item <?php echo e((request()->is('recap*')) ? 'active' : ''); ?>"><a href="<?php echo e(url('recap')); ?>"><i class="ft-home"></i><span class="menu-title" data-i18n="">Rekap</span></a></li>
                 <?php endif; ?>
                 <?php if(Auth::user()->group == 1): ?>
                     <li class=" nav-item <?php echo e((request()->is('office*')) ? 'active' : ''); ?>"><a href="<?php echo e(url('office')); ?>"><i class="la la-building"></i><span class="menu-title" data-i18n="">OPD</span></a></li>

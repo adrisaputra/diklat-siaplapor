@@ -53,6 +53,20 @@
 								</div>
 
                                 <div class="form-group row">
+									<label class="col-form-label col-sm-3 text-sm-right"> Penanggung Jawab</label>
+									<div class="col-sm-9">
+										<input type="text" class="form-control" value="{{ $proposal->responsible_person }}">
+									</div>
+								</div>
+
+                                <div class="form-group row">
+									<label class="col-form-label col-sm-3 text-sm-right"> No. WA</label>
+									<div class="col-sm-9">
+										<input type="text" class="form-control" value="{{ $proposal->whatsapp }}">
+									</div>
+								</div>
+
+                                <div class="form-group row">
 									<label class="col-form-label col-sm-3 text-sm-right"> Surat Pengantar</label>
 									<div class="col-sm-9">
                                         <a href="{{ asset('upload/cover_letter/'.$proposal->cover_letter ) }}" target="blank" class="btn btn-sm btn-flat btn-info">Lihat File</a>

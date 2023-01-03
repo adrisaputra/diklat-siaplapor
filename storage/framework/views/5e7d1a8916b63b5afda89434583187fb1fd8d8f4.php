@@ -94,6 +94,9 @@
                                                     <?php if($v->status=="Masuk"): ?>
                                                         <div class="badge badge-success">Telah Dikirim Ke Admin</div>
                                                     <?php endif; ?>
+                                                    <?php if(Request::segment(1)=="proposal_process"): ?>
+                                                        <div class="badge badge-warning">Sedang Diproses Oleh Admin</div>
+                                                    <?php endif; ?>
                                                     <?php if(Request::segment(1)=="proposal_revision"): ?>
                                                         <div class="badge badge-danger">Usul Tidak Lengkap</div>
                                                     <?php endif; ?>

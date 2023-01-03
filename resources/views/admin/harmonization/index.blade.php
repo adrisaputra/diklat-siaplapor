@@ -95,7 +95,19 @@
                                                 @elseif($v->status == "kirim ke admin")
                                                     <td>Laporan telah dikirim ke admin, Silahkan Setor Ulang Berkas Fisik ke Biro Hukum</td> 
                                                 @elseif($v->status == "setor berkas fisik")
-                                                    <td>Laporan sedang diverifikasi</td> 
+                                                    
+                                                    @php
+                                                        $proposals = DB::table('proposals')->where('id', $v->id)->first();
+                                                    @endphp
+
+                                                    @if($proposals->type == "Pergub")
+                                                        <td>Menunggu Hasil Fasilitasi Kemendagri</td> 
+                                                    @elseif($proposals->type == "Perda")
+                                                        <td>Menunggu Hasil Harmonisasi Kemenkunham</td> 
+                                                    @else
+                                                        <td>Laporan sedang diverifikasi</td> 
+                                                    @endif
+                                                    
                                                 @endif       
                                             @endif
                                            
@@ -295,6 +307,24 @@
                                                         <div class="form-group row">
                                                             <label class="col-form-label col-sm-8"> Berkas fisik sudah diparaf Kabag</label>
                                                             <input type="checkbox" required/>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label class="col-form-label col-sm-12"> Pejabat yang menandatangani <span class="required" style="color: #dd4b39;">*</span> </label>
+                                                            <div class="col-sm-12">
+                                                                <input type="text" name="signature" class="form-control" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label class="col-form-label col-sm-12"> SK Final (Penerima) <span class="required" style="color: #dd4b39;">*</span> </label>
+                                                            <div class="col-sm-12">
+                                                                <input type="text" name="receiver" class="form-control" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row">
+                                                            <label class="col-form-label col-sm-12"> SK Final (Tanggal) <span class="required" style="color: #dd4b39;">*</span> </label>
+                                                            <div class="col-sm-12">
+                                                                <input type="date" name="receiver_date" class="form-control" required>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <div class="modal-footer">

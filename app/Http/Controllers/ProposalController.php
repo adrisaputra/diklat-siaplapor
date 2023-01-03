@@ -120,6 +120,8 @@ class ProposalController extends Controller
             'date' => 'required',
             'type' => 'required',
             'about' => 'required',
+            'responsible_person' => 'required',
+            'whatsapp' => 'required',
             'cover_letter' => 'required|mimes:jpg,jpeg,png,pdf|max:50000',
             'review_staff' => 'required|mimes:jpg,jpeg,png,pdf|max:50000',
             'official_memo' => 'required|mimes:jpg,jpeg,png,pdf|max:50000',
@@ -132,6 +134,8 @@ class ProposalController extends Controller
         $proposal->date = $request->date;
         $proposal->type = $request->type;
         $proposal->about = $request->about;
+        $proposal->responsible_person = $request->responsible_person;
+        $proposal->whatsapp = $request->whatsapp;
         
 		if($request->file('cover_letter')){
 			$proposal->cover_letter = time().'.'.$request->cover_letter->getClientOriginalExtension();
@@ -181,6 +185,11 @@ class ProposalController extends Controller
    public function update(Request $request, Proposal $proposal)
    {
         $this->validate($request, [
+            'date' => 'required',
+            'type' => 'required',
+            'about' => 'required',
+            'responsible_person' => 'required',
+            'whatsapp' => 'required',
             'cover_letter' => 'mimes:jpg,jpeg,png,pdf|max:100000',
             'review_staff' => 'mimes:jpg,jpeg,png,pdf|max:100000',
             'official_memo' => 'mimes:jpg,jpeg,png,pdf|max:100000',
